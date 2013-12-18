@@ -1,0 +1,21 @@
+﻿@model IList<ComplaintBox.Web.Models.Subject>
+@Html.ActionLink("Create Subject's", "SubjectsOfComplaints","Subject")
+<table>
+    <thead>
+        <tr>
+            <th >Title Lists</th> 
+       </tr>
+        
+    </thead>
+    <tbody>
+        @foreach (var subject in Model)
+        {
+            <tr>
+                <td>@subject.Title</td>
+                <td>@Html.ActionLink("Edit", "EditTitle", new {id = subject.Id})</td>
+                 <td>@Html.ActionLink("Delete", "DeleteTitle", new {id = subject.Id})</td>
+               
+            </tr>
+        }            
+    </tbody>
+</table>

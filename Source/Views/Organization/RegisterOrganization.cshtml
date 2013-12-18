@@ -1,0 +1,50 @@
+﻿@model ComplaintBox.Web.Models.Organization
+
+<h2> Register Organization</h2>
+
+
+@using (Html.BeginForm("RegisterOrganization", "Organization", FormMethod.Post))
+{        
+ 
+     @Html.ValidationSummary(true)
+    
+    <fieldset>
+        <legend>Register Organization</legend>
+         
+        @Html.LabelFor(m=> m.FullName)        
+        @Html.EditorFor(m=> m.FullName)
+        @Html.ValidationMessageFor(m=> m.FullName)
+        
+        @Html.LabelFor(m=> m.PhoneNumber)                 
+        @Html.EditorFor(m=> m.PhoneNumber)
+        @Html.ValidationMessageFor(m=> m.PhoneNumber)
+
+        @Html.LabelFor(m=> m.UserName)        
+        @Html.EditorFor(m=> m.UserName)
+        @Html.ValidationMessageFor(m=> m.UserName)
+
+        @Html.LabelFor(m=> m.EmailAddress)          
+        @Html.EditorFor(m=> m.EmailAddress)              
+        @Html.ValidationMessageFor(m=> m.EmailAddress)
+
+        @Html.LabelFor(m=> m.Password)                    
+        @Html.EditorFor(m=> m.Password)
+        @Html.ValidationMessageFor(m=> m.Password)
+
+        
+        @Html.LabelFor(m=> m.ComfirmPasswrod)        
+        @Html.EditorFor(m=> m.ComfirmPasswrod)
+        @Html.ValidationMessageFor(m=> m.ComfirmPasswrod)
+
+        <div>
+            <input type="submit" value ="SAVE"/>
+        </div>
+
+    </fieldset>
+}
+
+@section scripts
+{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

@@ -1,0 +1,19 @@
+﻿@model IList<ComplaintBox.Web.Models.Settings>
+
+<table>
+    <thead>
+        <tr>
+            <th >Subject</th> 
+       </tr>
+        
+    </thead>
+    <tbody>
+
+        @foreach (var sub in Model)
+        {
+            <tr>
+                <td>@sub.SubjectTitle</td>
+            </tr>
+        }            
+    </tbody>
+</table>

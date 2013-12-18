@@ -1,0 +1,27 @@
+﻿@model ComplaintBox.Web.Models.Complaint 
+<form action="~/ReportGenarator/DateWiseComplaints" method="POST">
+    <h2>Date Wise Complaint</h2>
+    <fieldset>
+        <legend>Add Complain</legend>
+             <input type ="hidden" name="id" value="@ViewBag.id">
+        <label for="fromDate">From Date</label>
+        <input class="datepicker" type="datetime" name="fromDate" id="fromdate"/>
+      
+        <label for="toDate">To Date</label>
+        <input class="datepicker" type="datetime" name="toDate" id="toDate"/>
+       
+        <label>Search Using Status</label>
+        <div>
+            <select name="state">
+                <option value="Resolved" >Resolved</option>
+                <option value="NEW">New</option>
+                <option value="All">All</option>
+             </select>
+        </div>
+         <label for="SubjectId">@ViewBag.SubjectTitle</label>
+           @Html.DropDownListFor(c=>c.SubjectId, (IList<SelectListItem>)ViewBag.Subjects)
+        <div>
+        <input type="submit" value ="SEND"/>
+        </div>
+    </fieldset>
+</form>

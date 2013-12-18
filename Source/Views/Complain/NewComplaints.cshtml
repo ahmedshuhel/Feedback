@@ -1,0 +1,43 @@
+﻿@model List< ComplaintBox.Web.Models.Complaint >
+<h2>New Complaints</h2>
+@if(Model.Count>0)
+{
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Email Address</th>
+            <th>@ViewBag.SubjectTitle</th>
+            <th>Complain</th>
+             <th>Status</th>
+            <th>Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var complain in Model)
+        {
+            <tr>
+                <td>@complain.Complainer</td>
+                <td>@complain.PhoneNumber</td>
+                <td>@complain.Address</td>
+                <td>@complain.EmailAddress</td>
+                <td>@complain.Subject.Title</td>
+                <td>@complain.Description</td>
+                <td>@complain.Status</td>
+                <td>@complain.Rating</td>
+                <td>@Html.ActionLink("Show Details", "ShowDetail","ReportGenarator", new {id = complain.Id},null)</td>
+                <td>@Html.ActionLink("Resolve", "ResolveComplain", new {id = complain.Id})</td>
+            </tr>
+        }            
+    </tbody>
+  
+</table>
+}
+else
+{
+    <div>
+    <h6>There Is No Complaints :-)</h6>
+    </div>
+}

@@ -1,0 +1,14 @@
+﻿<form action="~/Subject/EditNewTitle" method="POST">
+ 
+    <fieldset>
+        <legend>Edit Title</legend>
+        
+        <label for="newtitle">New Title</label>
+        <input type ="hidden" name="id" value="@ViewBag.id">
+        <input type="text" name="newtitle" id="newtitle"/>
+       
+        <div>
+            <input type="submit" value ="Save"/>
+        </div>
+    </fieldset>
+</form>

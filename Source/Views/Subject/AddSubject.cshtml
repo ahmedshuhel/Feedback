@@ -1,0 +1,18 @@
+﻿@model ComplaintBox.Web.Models.Subject
+
+<form action="AddSubject" method="POST">
+ 
+    <fieldset>
+        <legend>Add Subjects</legend>
+        
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title"/>
+
+         @Html.HiddenFor(m=>m.OrganizationId)
+       
+        <div>
+            <input type="submit" value ="Save"/>
+        </div>
+    </fieldset>
+</form>
+

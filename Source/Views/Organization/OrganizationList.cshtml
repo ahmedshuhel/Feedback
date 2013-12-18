@@ -1,0 +1,28 @@
+﻿@model IList<ComplaintBox.Web.Models.Organization>
+<h2>Organization's Details</h2>
+<table>
+    <thead>
+        <tr>
+            <th >Organization Name</th> 
+            <th >Email</th>
+         
+        </tr>
+        
+    </thead>
+    <tbody>
+        @foreach (var organization in Model)
+        {
+            <tr>
+                <td>@organization.FullName</td>
+                <td>@organization.EmailAddress</td>
+                <td>@Html.ActionLink("Write Complaints", "WriteComplain", "Complain", new {id =organization.Id}, null)</td>  
+                <td>@Html.ActionLink("Add Subject", "AddSubject", "Subject", new {id =organization.Id}, null)</td>  
+                <td>@Html.ActionLink("Settings", "Setting", "Setting", new {id =organization.Id}, null)</td>  
+                <td>@Html.ActionLink("NewComplaints", "NewComplaints", "Complain", new {id =organization.Id}, null)</td>  
+                <td>@Html.ActionLink("ToDays Complaints","ComplaintList", "ReportGenarator", new {id =organization.Id}, null)</td>  
+                <td>@Html.ActionLink("Search Complaints","DateWiseComplaints", "ReportGenarator", new {id =organization.Id}, null)</td> 
+                 <td>@Html.ActionLink("Search Monthly Complaints(chrt)","MonthWiseComplaints", "ReportGenarator", new {id =organization.Id}, null)</td> 
+            </tr>
+        }            
+    </tbody>
+</table>
