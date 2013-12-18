@@ -1,0 +1,53 @@
+﻿.featurette-divider {
+    margin-top : 60px;
+    margin-bottom : 50px;
+}
+
+.customer {
+    margin-bottom : 60px;
+}
+.search {
+ 
+    margin-top: 50px;
+}
+.back-to-top {
+    border: 1px lightgrey solid;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom:10px;
+    border-radius: 5px;
+    background-color: lightgrey;
+    color: white;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+#footer {
+    margin-top : 10px;
+    padding-top : 50px;
+    padding-bottom : 20px;
+    background-color: grey;
+    color: white;
+}
+
+body {
+    margin-bottom : 0;
+    padding-bottom : 0;
+}
+
+#sign-in {
+    position:absolute;
+    top: 30px;
+    right: 30px;
+    z-index: 1000;
+}
+#focusedInput {
+    Width: 50%;
+    height: 50px;
+    margin-left: 300px;
+    margin-top:50px;
+
+}
+
