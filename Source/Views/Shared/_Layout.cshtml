@@ -26,6 +26,7 @@
         <!-- Custom styles for this template -->
         <link href="/Content/css/carousel.css" rel="stylesheet">
         <link href="/Content/css/feedback.css" rel="stylesheet" />
+         @RenderSection("Style", false)
     </head>
 
     <body>
@@ -125,5 +126,8 @@
                 });
             });
         </script>
+        
+        @RenderSection("Script", false)
+
     </body>
 </html>

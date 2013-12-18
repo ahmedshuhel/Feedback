@@ -1,0 +1,108 @@
+﻿@{
+    ViewBag.Title = "Search Organizations";
+}
+
+@section Style
+{
+    <link href="~/Content/css/typeahead.css" rel="stylesheet" />
+}
+
+<section class="container">
+    <div class="row">
+        <div class="col col-lg-12">
+            
+            <div class="sticky-footer-wrapper">
+                <div class="masthead">
+                    <h1 class="title"><img class="twitter-logo" src="~/Content/img/common/feedback-heads1-300x224.png"> organization search</h1>
+                    <p class="tagline">search organization and see infomation including customer ratings!</p>
+
+                    <div class="typeahead-demo">
+                        <input class="typeahead" placeholder="registerd organization list">
+                        <div class="btn-demo">
+                            <p class="btn-demo-text">activate organization search</p>
+                        </div>
+                    </div>
+                    <span class="links links-examples">
+                        <a href="http://twitter.github.com/typeahead.js/examples/">or see top 10 organizations</a>
+                    </span>
+
+                    <div class="promo">
+                        <a class="btn btn-download" href="#"><strong>Write Feedback</strong></a>                       
+                    </div>
+                </div>
+                <div class="sticky-footer-push"></div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+@section Script
+{
+    <script src="~/Scripts/js/hogan-2.0.0.js"> </script>
+    <script src="~/Scripts/js/ghostwriter.min.js"> </script>
+    <script src="~/Scripts/js/typeahead.min.js"> </script>
+    
+    <script>
+
+        var orglist = [
+            {
+                value: 'Metropolitan University',
+                tokens: ['Metropolitan', 'University'],
+                name: 'Metropolitan University',
+                address: 'Sylhet, Bangladesh, Ph: 01715812452',
+                rating : 5
+            },
+            {
+                value: 'Grameen Phone',
+                tokens: ['Grameen', 'Phone'],
+                name: 'Grameen Phone',
+                address: 'Dhaka, Bangladesh, Ph: 01715812452',
+                rating : 7
+            },            
+        ];
+
+        $(document).ready(function() {
+            $('.typeahead').typeahead({
+                name: 'repos',
+                local: orglist,
+                template: [
+                    '<p class="repo-language">{{rating}}</p>', '<p class="repo-name">{{name}}</p>', '<p class="repo-description">{{address}}</p>'
+                ].join(''),
+                engine: Hogan
+            });
+
+            var haunt = ghostwriter.haunt({
+                input: '.typeahead',
+                interval: 500,
+                manuscript: [
+                    ghostwriter.noop,
+                    'Gramddlp',
+                    ghostwriter.backspace.repeat(4),
+                    'een',
+                    ghostwriter.down.repeat(2),
+                    ghostwriter.enter,
+                    ghostwriter.selectAll,
+                    'UnivStry',
+                    ghostwriter.selectAll,
+                    'University',
+                    ghostwriter.down,
+                    ghostwriter.esc,
+                    ghostwriter.selectAll
+                ]
+            });
+
+            $('.btn-demo').on('click', function(e) {
+                e.stopPropagation();
+
+                $(this).addClass('is-pressed');
+                haunt.start();
+            });
+
+            $(document).on('click keydown', function(e) {
+                !e.ghostwriter && haunt.pause();
+            });
+        });
+
+    </script>
+}
