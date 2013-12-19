@@ -7,29 +7,12 @@
 @section Style
 {
     <style type="text/css">
-        .rating {
-            -webkit-text-shadow: 1px 1px 2px grey;
-            color: darkgoldenrod;
-            direction: rtl;
-            font-size: 15px;
-            font-weight: bolder;
-            text-shadow: 1px 1px 2px grey;
-            unicode-bidi: bidi-override;
-        }
-
-        .rating > span {
-            display: inline-block;
-            position: relative;
-            width: 1.1em;
-        }
-
         .organization-list { margin-top: 30px 0px 100px 0px; }
 
         .registered-org-header {
             margin-bottom: 20px;
 
         }
-
     </style>
 
 }
@@ -117,20 +100,3 @@
     
 
 </div>
-
-
-@section Script
-{
-    
-    <script>
-        $(function() {
-
-            $(".rating > span").hover(function() {
-                $(this).removeClass();
-                $(this).addClass('glyphicon glyphicon-star');
-            });
-
-        });
-    </script>
-
-}

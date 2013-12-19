@@ -26,7 +26,26 @@
         <!-- Custom styles for this template -->
         <link href="/Content/css/carousel.css" rel="stylesheet">
         <link href="/Content/css/feedback.css" rel="stylesheet" />
-         @RenderSection("Style", false)
+        @RenderSection("Style", false)
+        
+        <style type="text/css">
+            
+            .rating {
+                -webkit-text-shadow: 1px 1px 2px grey;
+                color: darkgoldenrod;
+                direction: rtl;
+                font-size: 15px;
+                font-weight: bolder;
+                text-shadow: 1px 1px 2px grey;
+                unicode-bidi: bidi-override;
+            }
+
+            .rating > span {
+                display: inline-block;
+                position: relative;
+                width: 1.1em;
+            }
+        </style>
     </head>
 
     <body>
@@ -124,6 +143,15 @@
                 $('.dropdown-menu').find('form').click(function(e) {
                     e.stopPropagation();
                 });
+            });
+
+            $(function() {
+
+                $(".rating > span").hover(function() {
+                    $(this).removeClass();
+                    $(this).addClass('glyphicon glyphicon-star');
+                });
+
             });
         </script>
         

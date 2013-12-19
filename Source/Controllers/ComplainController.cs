@@ -171,6 +171,10 @@ namespace ComplaintBox.Web.Controllers
         }
 
 
+        public ActionResult Feedback()
+        {
+            return View();
+        }
 
         public ActionResult UserView()
         {
