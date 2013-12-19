@@ -1,0 +1,136 @@
+﻿@model IEnumerable<ComplaintBox.Web.Models.Organization>
+
+@{
+    ViewBag.Title = "Organizations";
+}
+
+@section Style
+{
+    <style type="text/css">
+        .rating {
+            -webkit-text-shadow: 1px 1px 2px grey;
+            color: darkgoldenrod;
+            direction: rtl;
+            font-size: 15px;
+            font-weight: bolder;
+            text-shadow: 1px 1px 2px grey;
+            unicode-bidi: bidi-override;
+        }
+
+        .rating > span {
+            display: inline-block;
+            position: relative;
+            width: 1.1em;
+        }
+
+        .organization-list { margin-top: 30px 0px 100px 0px; }
+
+        .registered-org-header {
+            margin-bottom: 20px;
+
+        }
+
+    </style>
+
+}
+
+<div class="container">
+    <div class="row">        
+        <div class="col-lg-10 col-lg-offset-1">
+            <div class="organization-list">
+                
+                <h1 class="registered-org-header text-center">Registered Organizations</h1>
+
+                <div class="list-group">
+                    <a href="#" class="list-group-item" title="Click to write a feedback">
+                        <div class="rating pull-right">
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                        </div>
+
+                        <h3 class="list-group-item-heading">Metropolitan Universion</h3>                    
+                        <p class="list-group-item-text">Zindabazar, Sylhet. <span class="glyphicon glyphicon-earphone"></span> +880-719076545</p>                  
+                    </a>
+                
+                    <a href="#" class="list-group-item active">
+                        <div class="rating pull-right">
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+
+                        </div>
+
+                    
+                        <h3 class="list-group-item-heading">Pran</h3>                    
+                        <p class="list-group-item-text">Zindabazar, Sylhet. <span class="glyphicon glyphicon-earphone"></span> +880-719076545</p>                  
+                    </a>
+                
+                
+                
+                    <a href="#" class="list-group-item ">
+                        <div class="rating pull-right">
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+
+                        </div>
+                        <h3 class="list-group-item-heading">Grameen Phone</h3>                    
+                        <p class="list-group-item-text">Zindabazar, Sylhet. <span class="glyphicon glyphicon-earphone"></span> +880-719076545</p>                  
+                    </a>
+                    <a href="#" class="list-group-item ">
+                        <div class="rating pull-right">
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+    
+                        </div>
+                        <h3 class="list-group-item-heading">Banglalink</h3>                    
+                        <p class="list-group-item-text">Dhaka, Sylhet. <span class="glyphicon glyphicon-earphone"></span> +880-719076545</p>                  
+                    </a>
+                  
+                </div>                  
+                <div class="row">
+                    <div class="col-lg-4 col-lg-offset-4">
+                        <ul class="pagination">
+                            <li class="disabled"><a href="#">&laquo;</a></li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">&raquo;</a></li>
+                        </ul>
+                    </div>
+                </div>     
+            </div>     
+        </div>
+    </div>
+    
+
+</div>
+
+
+@section Script
+{
+    
+    <script>
+        $(function() {
+
+            $(".rating > span").hover(function() {
+                $(this).removeClass();
+                $(this).addClass('glyphicon glyphicon-star');
+            });
+
+        });
+    </script>
+
+}
