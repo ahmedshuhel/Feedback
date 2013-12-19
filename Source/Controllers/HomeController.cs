@@ -19,5 +19,10 @@ namespace ComplaintBox.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult OrganizationList()
+        {
+            return View();
+        }
     }
 }
