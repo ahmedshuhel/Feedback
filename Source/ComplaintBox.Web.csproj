@@ -312,6 +312,8 @@
     <Content Include="Views\Home\SearchOrganizations.cshtml" />
     <Content Include="Views\Home\OrganizationList.cshtml" />
     <Content Include="Views\Complain\Feedback.cshtml" />
+    <Content Include="Views\Shared\_SeconderyLayout.cshtml" />
+    <Content Include="Views\Home\SignUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

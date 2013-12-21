@@ -24,5 +24,10 @@ namespace ComplaintBox.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult SignUp()
+        {
+            return View();
+        }
     }
 }
