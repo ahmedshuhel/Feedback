@@ -1,53 +1,104 @@
 ﻿.featurette-divider {
-    margin-top : 60px;
-    margin-bottom : 50px;
+    margin-bottom: 50px;
+    margin-top: 60px;
 }
 
-.customer {
-    margin-bottom : 60px;
-}
-.search {
- 
-    margin-top: 50px;
-}
+.customer { margin-bottom: 60px; }
+
+.search { margin-top: 50px; }
+
 .back-to-top {
-    border: 1px lightgrey solid;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 10px;
-    padding-bottom:10px;
-    border-radius: 5px;
     background-color: lightgrey;
-    color: white;
-    position: fixed;
+    border: 1px lightgrey solid;
+    border-radius: 5px;
     bottom: 10px;
+    color: white;
+    padding: 10px 15px;
+    position: fixed;
     right: 10px;
 }
 
 #footer {
-    margin-top : 10px;
-    padding-top : 50px;
-    padding-bottom : 20px;
     background-color: grey;
     color: white;
+    margin-top: 10px;
+    padding-bottom: 20px;
+    padding-top: 50px;
 }
 
 body {
-    margin-bottom : 0;
-    padding-bottom : 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 #sign-in {
-    position:absolute;
-    top: 30px;
+    position: absolute;
     right: 30px;
+    top: 30px;
     z-index: 1000;
 }
+
 #focusedInput {
-    Width: 50%;
     height: 50px;
     margin-left: 300px;
-    margin-top:50px;
-
+    margin-top: 50px;
+    Width: 50%;
 }
 
+.rating {
+    -webkit-text-shadow: 1px 1px 2px grey;
+    color: darkgoldenrod;
+    direction: rtl;
+    font-size: 15px;
+    font-weight: bolder;
+    text-shadow: 1px 1px 2px grey;
+    unicode-bidi: bidi-override;
+}
+
+.rating > span {
+    display: inline-block;
+    position: relative;
+    width: 1.1em;
+}
+
+
+#navbar-collapse-top-menu {
+    padding-left: 70px;
+    padding-right: 70px;
+    padding-top: 10px;
+}
+
+.navbar-header { padding-top: 10px; }
+
+.navbar {
+    background: #ffffff;
+    min-height: 80px;
+}
+
+#global-footer {
+    background: #18191b;
+    border-bottom: #0a0a0a 5px solid;
+    font-size: 11px;
+    padding: 100px;
+}
+
+#footer-menu { border-bottom: 1px solid gray; }
+
+.footer-menu-links li a {
+    color: gray;
+    padding: 0px 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.footer-menu-links li a:hover {
+    -moz-transition: color .7s linear;
+    -o-transition: color .7s linear;
+    -webkit-transition: color .7s linear;
+    color: #ffffff;
+    transition: color .7s linear;
+}
+
+.fb-logo { font-size: 1.8em; }
+
+#social-menu { padding: 10px 0px; }

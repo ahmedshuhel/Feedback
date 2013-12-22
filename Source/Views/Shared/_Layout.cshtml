@@ -26,26 +26,7 @@
         <!-- Custom styles for this template -->
         <link href="/Content/css/carousel.css" rel="stylesheet">
         <link href="/Content/css/feedback.css" rel="stylesheet" />
-        @RenderSection("Style", false)
-        
-        <style type="text/css">
-            
-            .rating {
-                -webkit-text-shadow: 1px 1px 2px grey;
-                color: darkgoldenrod;
-                direction: rtl;
-                font-size: 15px;
-                font-weight: bolder;
-                text-shadow: 1px 1px 2px grey;
-                unicode-bidi: bidi-override;
-            }
-
-            .rating > span {
-                display: inline-block;
-                position: relative;
-                width: 1.1em;
-            }
-        </style>
+        @RenderSection("Style", false)        
     </head>
 
     <body>
@@ -129,11 +110,8 @@
 
         @RenderBody()
 
+        @Html.Partial("_FooterPartial")
 
-        <footer id="footer" class="text-center">
-            <a class="back-to-top" href="#"><span class="glyphicon glyphicon-chevron-up"></span> </a>
-            <p>&copy; 2013 Creative Design, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-        </footer>
 
         <script src="/Scripts/js/jquery-1.10.2.min.js"> </script>
         <script src="/Scripts/js/bootstrap.min.js"> </script>

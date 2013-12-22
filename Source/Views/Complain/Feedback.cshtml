@@ -1,99 +1,142 @@
-﻿
+﻿@{
+    ViewBag.Title = "Feedback";
+    Layout = "/Views/Shared/_SeconderyLayout.cshtml";
+}
+
+
+@section Style{
+
+
+    <link href="~/Content/css/bootstrap-wysihtml5.css" rel="stylesheet" />
+    <style type="text/css">
+        #feedback-form {
+            background-color: #ffffff;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            padding: 15px 50px;
+        }
+
+        .wysihtml5-toolbar li .btn-sm {
+            padding: 4px 9px;
+            font-size: 11px;
+            line-height: 1.5;
+            border-radius: 3px;
+        }
+    </style>
+}
+
 <div class="container">
-    <div class="row">       
-        <div class="col-lg-8 col-lg-offset-4">
-            
-            <div class="panel panel-default">
-                <div class="panel-heading text-center"> Enter FeedBack</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form">
-                        <div class="form-group" >
-                            <label for="name" class="col-sm-3 control-label">Enter Your Name:</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" placeholder="Name">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="complaint" class="col-sm-3 control-label">Your Complaint</label>
-                            <div class="col-sm-9">
-                                <textarea class="form-control" rows="3"></textarea>
-                            </div>
-                        </div>
+    <div class="row">
+        <div class="col-lg-offset-3 col-lg-6">
+            <form class="form-horizontal" role="form" id="feedback-form">
+                <h1 class="text-center">Write Your Feed Back</h1>
+                <hr style="margin-bottom: 40px" />
 
-                        <div class="form-group">
-                            <label for="rating" class="col-sm-3 control-label">Rate It:</label>
-                            <div class="col-sm-9">
-                                <div class="rating">
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </div>
-                            </div>
-                        </div> 
-                        
-                         <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-9">
-                                <span>Please give us you <span class="badge">email</span> address if you would like to hear form us about your feedback.</span>
-                            </div>
-                        </div>
-                                                
-                        <div class="form-group">                           
-                            <label for="" class="col-sm-3 control-label">Email</label>
-                            <div class="col-sm-9">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="Email">                                                                                                         
-                            </div>
-                        </div>
-                        
-                       
-                        <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-9">
-                                <strong>Would you like to give us some additional information? </strong>
-                                <div class="checkbox-inline">                                   
-                                    <label>                                        
-                                        <input id="additional-info" type="checkbox">
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="additional-info-box" style="display: none">
-                            <div class="form-group">
-                                <label for="name" class="col-sm-3 control-label">Phone:</label>
-                                <div class="col-sm-9">
-                                    <input type="tel" class="form-control">                               
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="name" class="col-sm-3 control-label">Address:</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-9">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </div>
-                  
-                    </form>
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" class="form-control" placeholder="Your Name">
                 </div>
-            </div>           
+
+                <div class="form-group">
+                    <label for="complaint">Your Feedback</label>
+                    <textarea id="complaint" class="form-control" rows="3"></textarea>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="rating">Rate It</label>
+
+                    <div class="rating pull-left">
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <small>Please give us you email address if you would like to hear form us about your feedback.</small>
+                    
+                    <div class="input-group">
+                        <span class="input-group-addon"> <span class="fa fa-envelope"></span> </span>
+                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email">    
+                    </div>
+                    
+                </div>
+
+
+                <div class="form-group">
+
+                    
+                    <small> Check if you would like to give us some additional information.</small>
+                    <div class="checkbox-inline">
+                                                
+                        <label>
+                            <input id="additional-info" type="checkbox">                           
+                        </label>
+                    </div>
+
+                </div>
+
+                <div id="additional-info-box" style="display: none">
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <div class="input-group">
+                         <span class="input-group-addon"> <span class="fa fa-mobile"></span> </span>
+                            <input type="tel" class="form-control">
+                            </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        
+                        <div class="input-group">
+                             <span class="input-group-addon"> <span class="fa fa-home"></span> </span>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <button type="submit" class="btn btn-primary btn-block">Feedback</button>
+
+                </div>
+
+            </form>
+
+
         </div>
-    </div>    
+    </div>
 </div>
 
 
 @section Script
 {
+    <script src="~/Scripts/js/wysihtml5-0.3.0.min.js"> </script>
+    <script src="~/Scripts/js/bootstrap3-wysihtml5.js"></script>
+
     <script type="text/javascript">
-        $(function() {
-            $("#additional-info").on('change', function() {
+        $(function () {
+
+            var myCustomTemplates = {
+                html: function (locale) {
+                    return "<li>" +
+                        "<div class='btn-group'>" +
+                        "<a class='btn btn-primary' data-wysihtml5-action='change_view' title='" + locale.html.edit + "'>HTML</a>" +
+                        "</div>" +
+                        "</li>";
+                }
+            };
+
+            $("#additional-info").on('change', function () {
                 $("#additional-info-box").fadeToggle();
             });
+
+            $('#complaint').wysihtml5();
         });
     </script>
 
