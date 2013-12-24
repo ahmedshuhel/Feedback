@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Thank You";
+    Layout = "~/Views/Shared/_SeconderyLayout.cshtml";
+}
+
+@section Style
+{
+    <style type="text/css">
+        body {
+            background: #EEF8E8;
+        }
+
+        .main-content {
+            font-size: 1.2em;
+            margin: 20px 20px;
+            padding: 100px 50px;
+        }
+
+        .thank-you {
+            margin-top: 30px;
+            margin-bottom: 35px;
+        }
+    </style>
+}
+
+<div class="container">
+    <div class="row main-content">
+        <div class="col-sm-8">
+            <h1 class="thank-you">Thank you @ViewBag.CustomerName!</h1>
+            <small>Your feedback helps us improve our product. We welcome your feedback. We have got your email. Hope to contact with you soon. Thank you for helping us.</small>
+        </div>
+
+        <div class="col-sm-4">
+            <img src="~/Content/img/common/thank_you.png" class="img-responsive" style="max-height: 200px; max-width: 221px" />
+        </div>
+
+    </div>
+</div>

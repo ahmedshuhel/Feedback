@@ -29,5 +29,12 @@ namespace ComplaintBox.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult ThankYou()
+        {
+            ViewBag.CustomerName = "Nazrana Mahin";
+            ViewBag.Email = "najrana@ymail.com";
+            return View();
+        }
     }
 }
