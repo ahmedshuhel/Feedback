@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewBag.Title</title>
+
+    <!--Mobile first-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--IE Compatibility modes-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msapplication-TileColor" content="#5bc0de">
+    <meta name="msapplication-TileImage" content="assets/img/metis-tile.png">
+
+    <!-- Bootstrap -->
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- Metis core stylesheet -->
+    <link href="~/Content/css/admin-main.css" rel="stylesheet" />
+    <link href="~/Content/css/admin-theme.css" rel="stylesheet" />
+
+    <!--Modernizr 3.0-->
+    <script src="~/Scripts/js/modernizr-build.min.js"></script>
+
+</head>
+<body>
+    <div id="wrap">
+        <div id="top">
+
+            <!-- .navbar -->
+            @Html.Partial("_AdminNavbar")
+            <!-- /.navbar -->
+
+            <!-- header.head -->
+            @Html.Partial("_AdminHeader")
+            <!-- end header.head -->
+        </div>
+
+        <!-- /#top -->
+        <div id="left">
+            @Html.Partial("_AdminSideBarTop")
+
+            <!-- #menu -->
+            @Html.Partial("_AdminSideBarMenu")
+            <!-- /#menu -->
+        </div>
+        <!-- /#left -->
+        <div id="content">
+            <div class="outer">
+                <div class="inner">
+                    @RenderBody()
+                </div>
+                <!-- end .inner -->
+            </div>
+            <!-- end .outer -->
+        </div>
+
+        <!-- end #content -->
+    </div>
+    <!-- /#wrap -->
+    <div id="footer">
+        <p>2013 &copy; Feedback Inc.</p>
+    </div>
+
+    <script src="~/Scripts/js/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/js/style-switcher.js"></script>
+    <script src="~/Scripts/js/admin-main.js"></script>
+
+</body>
+</html>
