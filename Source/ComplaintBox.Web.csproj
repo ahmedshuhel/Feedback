@@ -187,6 +187,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ComplainController.cs" />
+    <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RecentFeedBackViewModel.cs" />
     <Compile Include="Controllers\ReportGenaratorController.cs" />
@@ -202,6 +203,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\CboxContext.cs" />
     <Compile Include="Models\Complaint.cs" />
+    <Compile Include="Models\FeedbackViewModel.cs" />
     <Compile Include="Models\OrganizationDetailViewModel.cs" />
     <Compile Include="Models\OrganizationViewModel.cs" />
     <Compile Include="Models\Settings.cs" />
@@ -622,6 +624,7 @@
     <Content Include="Views\Shared\_AdminHeader.cshtml" />
     <Content Include="Views\Complain\RecentFeedback.cshtml" />
     <Content Include="Views\Organization\OrganizationDetails.cshtml" />
+    <Content Include="Views\Feedback\Feedback.cshtml" />
     <None Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -685,7 +688,7 @@
     <Content Include="Views\Organization\SignUp.cshtml" />
     <Content Include="Views\Shared\_FooterPartial.cshtml" />
     <Content Include="Views\Shared\_NavbarPartial.cshtml" />
-    <Content Include="Views\Home\ThankYou.cshtml" />
+    <Content Include="Views\Feedback\ThankYou.cshtml" />
     <Content Include="Views\Shared\_AdminNavbar.cshtml" />
     <Content Include="Views\Shared\_AdminSideBarTop.cshtml" />
     <Content Include="Views\Shared\_AdminSideBarMenu.cshtml" />

@@ -1,0 +1,127 @@
+﻿@model ComplaintBox.Web.Models.FeedbackViewModel
+@{
+    ViewBag.Title = "Feedback";
+    Layout = "/Views/Shared/_SeconderyLayout.cshtml";
+}
+
+
+@section Style{
+
+
+    <link href="~/Content/css/bootstrap-wysihtml5.css" rel="stylesheet" />
+    <style type="text/css">
+        #feedback-form {
+            background-color: #ffffff;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            padding: 15px 50px;
+        }
+
+        .wysihtml5-toolbar li .btn-sm {
+            padding: 4px 9px;
+            font-size: 11px;
+            line-height: 1.5;
+            border-radius: 3px;
+        }
+    </style>
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-offset-3 col-lg-6">
+
+            @using (Html.BeginForm("Feedback", "Feedback", FormMethod.Post, new { id = "feedback-form" }))
+            {
+                
+                <h1 class="text-center">Write Your Feed Back</h1>
+                <hr style="margin-bottom: 40px" />
+
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Your Name", id = "name" })
+                    @Html.HiddenFor(m => m.OrganizationId)
+                </div>
+
+                <div class="form-group">
+                    <label for="complaint">Your Feedback</label>
+                    @Html.TextAreaFor(m => m.Feedback, new { @class = "form-control", id = "complaint" })
+                </div>
+
+                <div class="form-group">
+                    <small>Please give us your email address if you would like to hear form us about your feedback.</small>
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="fa fa-envelope"></span></span>
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email", id = "email" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <small>Check if you would like to give us some additional information.</small>
+                    <div class="checkbox-inline">
+                        <label>
+                            @Html.CheckBoxFor(m => m.IsAdditionalInfo, new { id = "additional-info" })
+                        </label>
+                    </div>
+                </div>
+
+                <div id="additional-info-box" style="display: none">
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="fa fa-mobile"></span></span>
+                            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Phone Number", id = "phone" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Address</label>
+
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="fa fa-home"></span></span>
+                            @Html.TextBoxFor(m => m.Address, new { @class = "form-control", placeholder = "Address", id = "address" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <button type="submit" class="btn btn-primary btn-block">Feedback</button>
+
+                </div>
+
+            }
+
+
+        </div>
+    </div>
+</div>
+
+
+@section Script
+{
+    <script src="~/Scripts/js/wysihtml5-0.3.0.min.js"> </script>
+    <script src="~/Scripts/js/bootstrap3-wysihtml5.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+
+            var myCustomTemplates = {
+                html: function (locale) {
+                    return "<li>" +
+                        "<div class='btn-group'>" +
+                        "<a class='btn btn-primary' data-wysihtml5-action='change_view' title='" + locale.html.edit + "'>HTML</a>" +
+                        "</div>" +
+                        "</li>";
+                }
+            };
+
+            $("#additional-info").on('change', function () {
+                $("#additional-info-box").fadeToggle();
+            });
+
+            $('#complaint').wysihtml5();
+        });
+    </script>
+
+}

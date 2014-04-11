@@ -34,9 +34,9 @@
                     @foreach (var org in Model)
                     {
 
-                        <a href="#" class="list-group-item active">
+                        <a href="#" class="list-group-item">
                             <h3 class="list-group-item-heading">@org.Name</h3>
-                            <p class="list-group-item-text">@org.Address <span class="glyphicon glyphicon-earphone"></span>@org.PhoneNumber</p>
+                            <p class="list-group-item-text">@org.Address <span class="glyphicon glyphicon-earphone"></span>&nbsp; @org.PhoneNumber</p>
                         </a>
                     }
                 </div>
