@@ -44,6 +44,13 @@ namespace ComplaintBox.Web.Controllers
                     }).ToList();
             }
 
+            if (orgs.Count == 1)
+            {
+                var org = orgs.First();
+                return RedirectToAction("Feedback", "Feedback", new {id = org.OrganizationId});
+            }
+
+
             return View("OrganizationList", orgs);
         }
 
