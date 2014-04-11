@@ -1,8 +1,6 @@
-﻿using ComplaintBox.Web.Models;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using ComplaintBox.Web.Models;
 using System.Web.Mvc;
 
 namespace ComplaintBox.Web.Controllers
@@ -10,81 +8,83 @@ namespace ComplaintBox.Web.Controllers
     public class OrganizationController : Controller
     {
 
-
         [HttpGet]
-        public ActionResult RegisterOrganization()
+        public ActionResult OrganizationDetails(int id)
         {
-            //string title;
-            //using (var db = new CboxContext())
-            //{
-            //    var settings = db.Settings.FirstOrDefault();
-            //    title = settings.SubjectTitle;
-            //}
-
-            //ViewBag.SubjectTitle = title;
-
-            return View(new Organization());
+            return View(new OrganizationDetailViewModel()
+                {
+                    Id = id
+                });
         }
 
-        [HttpPost]
-        public ActionResult RegisterOrganization(Organization organization)
+
+        public ActionResult SearchOrganizations()
         {
-
-            if (ModelState.IsValid)
-            {
-                using (var db = new CboxContext())
-                {
-                    db.Organization.Add(organization);
-                    db.SaveChanges();
-                }
-
-                return RedirectToAction("OrganizationList");
-            }
-
-            return View(organization);
+            return View();
         }
 
         public ActionResult OrganizationList()
         {
-            List<Organization> orgs;
+
+            IList<OrganizationViewModel> orgs;
+
             using (var db = new CboxContext())
             {
-                orgs = db.Organization.ToList();                
+                orgs = db.Organization
+                    .OrderBy(o => o.FullName)
+                    .Take(10).Select(
+                    o => new OrganizationViewModel
+                    {
+                        Name = o.FullName,
+                        PhoneNumber = o.PhoneNumber,
+                        Address = o.Address,
+                    }).ToList();
             }
+
+
             return View(orgs);
+        }
+
+        [HttpGet]
+        public ActionResult SignUp()
+        {
+            return View(new SignUpViewModel());
+        }
+
+        [HttpPost]
+        public ActionResult SignUp(SignUpViewModel vm)
+        {
+            var organization = new Organization()
+            {
+                UserName = vm.UserName,
+                Password = vm.Password,
+                EmailAddress = vm.Email,
+            };
+
+            using (var db = new CboxContext())
+            {
+                db.Organization.Add(organization);
+                db.SaveChanges();
+            }
+            return RedirectToAction("OrganizationDetails", new {id = organization.Id});
         }
 
 
 
-//         public ActionResult ShowOrglists(int id)
-//        {
-//            
-//            var viewModel = new ShowOrglists();
-//            
-//            using (var db = new CboxContext())
-//            {
-//
-//               var org = db.Organization.Find(id);
-//               viewModel.Organization = org.FullName;
-//               viewModel.Orglists = db.Organization
-//                .Where(c=> c.Id == id)
-//                 .select(c => new Orglists()
-//                   {
-//                       Orgname = c.FullName,
-//                       phoneNumber = c.PhoneNumber,
-//                       
-//                   }).ToList();
-//                  
-//                  
-//            }
-//
-//            return View(viewModel);
-//        }
+        [HttpPost]
+        public ActionResult OrganizationDetails(OrganizationDetailViewModel vm)
+        {
+            using (var db = new CboxContext())
+            {
+                var org = db.Organization.Find(vm.Id);
+                org.FullName = vm.OrganizationName;
+                org.PhoneNumber = vm.PhoneNumber;
+                org.Address = vm.Address;
 
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("OrganizationList");
+        }
     }
-
-
-
-
-    
 }

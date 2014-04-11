@@ -1,8 +1,12 @@
-﻿@{ Layout = "~/Views/Shared/_SeconderyLayout.cshtml"; }
+﻿@model ComplaintBox.Web.Models.SignUpViewModel
+
+@{
+    Layout = "~/Views/Shared/_SeconderyLayout.cshtml";   
+}
 
 @section Style{
     <style type="text/css">
-        #singup-form {
+        #signup-form {
             background-color: #ffffff;
             border-radius: 5px;
             margin-bottom: 20px;
@@ -15,7 +19,11 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-offset-4 col-lg-5 ">
-            <form role="form" id="singup-form">
+
+
+            @using (Html.BeginForm("SignUp", "Organization", FormMethod.Post, new { id = "signup-form" }))
+            {
+
                 <h1 class="text-center">Singup And Enjoy!</h1>
 
                 <div class="form-group">
@@ -23,7 +31,8 @@
 
                     <div class="input-group">
                         <span class="input-group-addon"><span class="fa fa-user"></span></span>
-                        <input id="username" type="text" class="form-control" placeholder="User Name">
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "User Name", id = "username" })
+
                     </div>
                 </div>
 
@@ -32,7 +41,7 @@
 
                     <div class="input-group">
                         <span class="input-group-addon"><span class="fa fa-envelope"></span></span>
-                        <input id="email" type="email" class="form-control" placeholder="Email">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email", id = "email" })
                     </div>
                 </div>
 
@@ -40,7 +49,8 @@
                     <label for="password">Password</label>
                     <div class="input-group">
                         <span class="input-group-addon"><span class="fa fa-key"></span></span>
-                        <input id="password" type="password" class="form-control" placeholder="Password">
+                        @Html.TextBoxFor(m => m.Password, new { @class = "form-control", placeholder = "Password", id = "password" })
+
                     </div>
 
                 </div>
@@ -51,7 +61,7 @@
 
                     <div class="input-group">
                         <span class="input-group-addon"><span class="fa fa-key"></span></span>
-                        <input id="confirmpassword" type="password" class="form-control" placeholder="Repeat Password">
+                        @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Repeat Password", id = "confirmpassword" })
                     </div>
                 </div>
 
@@ -60,7 +70,13 @@
                         <button type="submit" class="btn btn-success btn-block">Sign Up</button>
                     </div>
                 </div>
-            </form>
+            }
         </div>
     </div>
 </div>
+
+@section Script
+{
+
+
+}

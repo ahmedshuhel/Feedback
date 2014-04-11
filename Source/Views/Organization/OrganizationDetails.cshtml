@@ -1,0 +1,72 @@
+﻿@model ComplaintBox.Web.Models.OrganizationDetailViewModel
+
+@{
+    Layout = "~/Views/Shared/_SeconderyLayout.cshtml";   
+}
+
+@section Style{
+    <style type="text/css">
+        #detail-form {
+            background-color: #ffffff;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            padding: 15px 50px;
+        }
+    </style>
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-offset-4 col-lg-5 ">
+
+
+            @using (Html.BeginForm("OrganizationDetails", "Organization", FormMethod.Post, new { id = "detail-form" }))
+            {
+
+                <h1 class="text-center">Organization Details!</h1>
+
+                <div class="form-group">
+                    <label for="orgName">Organizaiton Name</label>
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="fa fa-user"></span></span>
+                        @Html.HiddenFor(m => m.Id)
+                        @Html.TextBoxFor(m => m.OrganizationName, new { @class = "form-control", placeholder = "Organization Name", id = "orgName" })
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="fa fa-envelope"></span></span>
+                        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", placeholder = "Phone Number", id = "phone" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="fa fa-key"></span></span>
+                        @Html.TextBoxFor(m => m.Address, new { @class = "form-control", placeholder = "Address", id = "address" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div>
+                        <button type="submit" class="btn btn-success btn-block">Save</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Script
+{
+
+
+}

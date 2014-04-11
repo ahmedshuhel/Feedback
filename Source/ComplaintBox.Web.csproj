@@ -202,8 +202,10 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\CboxContext.cs" />
     <Compile Include="Models\Complaint.cs" />
+    <Compile Include="Models\OrganizationDetailViewModel.cs" />
     <Compile Include="Models\OrganizationViewModel.cs" />
     <Compile Include="Models\Settings.cs" />
+    <Compile Include="Models\SignUpViewModel.cs" />
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\Organizatino.cs" />
     <Compile Include="Migrations\SubjectConfiguration.cs" />
@@ -619,7 +621,7 @@
     <Content Include="Content\img\pattern\README.md" />
     <Content Include="Views\Shared\_AdminHeader.cshtml" />
     <Content Include="Views\Complain\RecentFeedback.cshtml" />
-    <Content Include="Views\Organization\ShowOrglists.cshtml" />
+    <Content Include="Views\Organization\OrganizationDetails.cshtml" />
     <None Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -665,8 +667,6 @@
     <Content Include="Views\Subject\AddSubject.cshtml" />
     <Content Include="Views\Subject\EditTitle.cshtml" />
     <Content Include="Views\Subject\ShowTitle.cshtml" />
-    <Content Include="Views\Organization\RegisterOrganization.cshtml" />
-    <Content Include="Views\Organization\OrganizationList.cshtml" />
     <Content Include="Views\ReportGenarator\DateWiseComplaints.cshtml" />
     <Content Include="Views\ReportGenarator\ShowDateWiseComplaint.cshtml" />
     <Content Include="Views\ReportGenarator\ComplaintList.cshtml" />
@@ -678,11 +678,11 @@
     <Content Include="Views\Complain\UserView.cshtml" />
     <Content Include="Views\Setting\Setting.cshtml" />
     <Content Include="Views\Setting\ShowSubject.cshtml" />
-    <Content Include="Views\Home\SearchOrganizations.cshtml" />
-    <Content Include="Views\Home\OrganizationList.cshtml" />
+    <Content Include="Views\Organization\SearchOrganizations.cshtml" />
+    <Content Include="Views\Organization\OrganizationList.cshtml" />
     <Content Include="Views\Complain\Feedback.cshtml" />
     <Content Include="Views\Shared\_SeconderyLayout.cshtml" />
-    <Content Include="Views\Home\SignUp.cshtml" />
+    <Content Include="Views\Organization\SignUp.cshtml" />
     <Content Include="Views\Shared\_FooterPartial.cshtml" />
     <Content Include="Views\Shared\_NavbarPartial.cshtml" />
     <Content Include="Views\Home\ThankYou.cshtml" />
@@ -692,6 +692,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

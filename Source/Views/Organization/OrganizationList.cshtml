@@ -1,28 +1,61 @@
-﻿@model IList<ComplaintBox.Web.Models.Organization>
-<h2>Organization's Details</h2>
-<table>
-    <thead>
-        <tr>
-            <th >Organization Name</th> 
-            <th >Email</th>
-         
-        </tr>
-        
-    </thead>
-    <tbody>
-        @foreach (var organization in Model)
-        {
-            <tr>
-                <td>@organization.FullName</td>
-                <td>@organization.EmailAddress</td>
-                <td>@Html.ActionLink("Write Complaints", "WriteComplain", "Complain", new {id =organization.Id}, null)</td>  
-                <td>@Html.ActionLink("Add Subject", "AddSubject", "Subject", new {id =organization.Id}, null)</td>  
-                <td>@Html.ActionLink("Settings", "Setting", "Setting", new {id =organization.Id}, null)</td>  
-                <td>@Html.ActionLink("NewComplaints", "NewComplaints", "Complain", new {id =organization.Id}, null)</td>  
-                <td>@Html.ActionLink("ToDays Complaints","ComplaintList", "ReportGenarator", new {id =organization.Id}, null)</td>  
-                <td>@Html.ActionLink("Search Complaints","DateWiseComplaints", "ReportGenarator", new {id =organization.Id}, null)</td> 
-                 <td>@Html.ActionLink("Search Monthly Complaints(chrt)","MonthWiseComplaints", "ReportGenarator", new {id =organization.Id}, null)</td> 
-            </tr>
-        }            
-    </tbody>
-</table>
+﻿@model IEnumerable<ComplaintBox.Web.Models.OrganizationViewModel>
+
+@{
+    ViewBag.Title = "Organizations";
+    Layout = "/Views/Shared/_SeconderyLayout.cshtml";
+}
+
+@section Style
+{
+    <style type="text/css">
+        .organization-list {
+            margin: 30px 0px 30px 0px;
+            background: #fff;
+            padding: 20px 20px;
+            border-radius: 5px;
+        }
+
+        .registered-org-header {
+            margin-bottom: 20px;
+        }
+    </style>
+
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+            <div class="organization-list">
+                <h1 class="registered-org-header text-center">Registered Organizations</h1>
+
+                <div class="list-group">
+                    
+                    
+                    @foreach (var org in Model)
+                    {
+
+                        <a href="#" class="list-group-item active">
+                            <h3 class="list-group-item-heading">@org.Name</h3>
+                            <p class="list-group-item-text">@org.Address <span class="glyphicon glyphicon-earphone"></span>@org.PhoneNumber</p>
+                        </a>
+                    }
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-4 col-lg-offset-4">
+                        <ul class="pagination">
+                            <li class="disabled"><a href="#">&laquo;</a></li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">&raquo;</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

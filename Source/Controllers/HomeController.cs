@@ -14,35 +14,8 @@ namespace ComplaintBox.Web.Controllers
             return View();
         }
 
-        public ActionResult SearchOrganizations()
-        {
-            return View();
-        }
-
-        public ActionResult OrganizationList()
-        {
-
-            IList<OrganizationViewModel> orgs;
-
-            using (var db = new CboxContext())
-            {
-                orgs = db.Organization
-                    .OrderBy(o => o.FullName)
-                    .Take(10).Select(
-                    o => new OrganizationViewModel
-                        {
-                        Name = o.FullName, PhoneNumber = o.PhoneNumber
-                    }).ToList();
-            }
 
 
-            return View(orgs);
-        }
-
-        public ActionResult SignUp()
-        {
-            return View();
-        }
 
         public ActionResult ThankYou()
         {
