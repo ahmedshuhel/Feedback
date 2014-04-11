@@ -9,6 +9,14 @@ namespace ComplaintBox.Web.Controllers
         [HttpGet]
         public ActionResult Feedback(int id)
         {
+            Organization org;
+            using (var db = new CboxContext())
+            {
+                org = db.Organization.Find(id);
+            }
+
+            ViewBag.OrganizationName = org.FullName;
+
             return View(new FeedbackViewModel()
                 {
                     OrganizationId = id

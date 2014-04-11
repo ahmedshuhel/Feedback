@@ -17,11 +17,37 @@ namespace ComplaintBox.Web.Controllers
                 });
         }
 
-
+        [HttpGet]
         public ActionResult SearchOrganizations()
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult SearchOrganizations(string searchTerm)
+        {
+
+            IList<OrganizationViewModel> orgs;
+
+            using (var db = new CboxContext())
+            {
+                orgs = db.Organization
+                    .Where(o=> o.FullName.Contains(searchTerm))
+                    .OrderBy(o => o.FullName)
+                    .Take(10).Select(
+                    o => new OrganizationViewModel
+                    {
+                        OrganizationId = o.Id,
+                        Name = o.FullName,
+                        PhoneNumber = o.PhoneNumber,
+                        Address = o.Address,
+                    }).ToList();
+            }
+
+            return View("OrganizationList", orgs);
+        }
+
+
 
         public ActionResult OrganizationList()
         {
@@ -35,6 +61,7 @@ namespace ComplaintBox.Web.Controllers
                     .Take(10).Select(
                     o => new OrganizationViewModel
                     {
+                        OrganizationId = o.Id,
                         Name = o.FullName,
                         PhoneNumber = o.PhoneNumber,
                         Address = o.Address,
@@ -44,6 +71,8 @@ namespace ComplaintBox.Web.Controllers
 
             return View(orgs);
         }
+
+
 
         [HttpGet]
         public ActionResult SignUp()

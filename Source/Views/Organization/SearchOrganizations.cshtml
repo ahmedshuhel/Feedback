@@ -23,15 +23,18 @@
                     <h1 class="title">Organization Search
                     </h1>
                     <p class="tagline">search organization and see infomation including customer ratings!</p>
-
-                    <div class="typeahead-demo">
-                        <input class="typeahead" placeholder="registerd organization list">
-                        <div class="btn-demo">
-                            <p class="btn-demo-text">activate organization search</p>
+                    
+                    @using (Html.BeginForm("SearchOrganizations", "Organization", FormMethod.Post, new {id="search-org-form"}))
+                    {
+                        <div class="typeahead-demo">
+                            <input class="typeahead" placeholder="registerd organization list" name="searchTerm">
+                            <div class="btn-demo">
+                                <p class="btn-demo-text">activate organization search</p>
+                            </div>
                         </div>
-                    </div>
+                    }
                     <span class="links links-examples">
-                        <a href="/Home/OrganizationList">or see top 10 organizations</a>
+                        <a href="@Url.Action("OrganizationList")">or see top 10 organizations</a>
                     </span>
                 </div>
             
@@ -65,7 +68,7 @@
             },
         ];
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('.typeahead').typeahead({
                 name: 'repos',
                 local: orglist,
@@ -95,14 +98,20 @@
                 ]
             });
 
-            $('.btn-demo').on('click', function (e) {
+            $('.btn-demo').on('click', function(e) {
                 e.stopPropagation();
 
                 $(this).addClass('is-pressed');
                 haunt.start();
             });
 
-            $(document).on('click keydown', function (e) {
+            $(document).on('click keydown', function(e) {
+
+                if (e.which === 13) {
+                    $("#search-org-form").submit();
+                    return;
+                }
+
                 !e.ghostwriter && haunt.pause();
             });
         });
