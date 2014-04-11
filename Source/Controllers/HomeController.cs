@@ -29,8 +29,8 @@ namespace ComplaintBox.Web.Controllers
                 orgs = db.Organization
                     .OrderBy(o => o.FullName)
                     .Take(10).Select(
-                    o => new OrganizationViewModel()
-                    {
+                    o => new OrganizationViewModel
+                        {
                         Name = o.FullName, PhoneNumber = o.PhoneNumber
                     }).ToList();
             }
