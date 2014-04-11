@@ -27,37 +27,64 @@ namespace ComplaintBox.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult RegisterOrganization(Organization Organization)
+        public ActionResult RegisterOrganization(Organization organization)
         {
 
             if (ModelState.IsValid)
             {
                 using (var db = new CboxContext())
                 {
-                    db.Organization.Add(Organization);
+                    db.Organization.Add(organization);
                     db.SaveChanges();
                 }
 
                 return RedirectToAction("OrganizationList");
             }
 
-            return View(Organization);
+            return View(organization);
         }
 
         public ActionResult OrganizationList()
         {
-            List<Organization> Organization;
+            List<Organization> orgs;
             using (var db = new CboxContext())
             {
-                Organization = db.Organization.ToList();
-                db.SaveChanges();
+                orgs = db.Organization.ToList();                
             }
-            return View(Organization);
+            return View(orgs);
         }
 
 
 
-
+//         public ActionResult ShowOrglists(int id)
+//        {
+//            
+//            var viewModel = new ShowOrglists();
+//            
+//            using (var db = new CboxContext())
+//            {
+//
+//               var org = db.Organization.Find(id);
+//               viewModel.Organization = org.FullName;
+//               viewModel.Orglists = db.Organization
+//                .Where(c=> c.Id == id)
+//                 .select(c => new Orglists()
+//                   {
+//                       Orgname = c.FullName,
+//                       phoneNumber = c.PhoneNumber,
+//                       
+//                   }).ToList();
+//                  
+//                  
+//            }
+//
+//            return View(viewModel);
+//        }
 
     }
+
+
+
+
+    
 }

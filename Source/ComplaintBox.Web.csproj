@@ -185,8 +185,10 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ComplainController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RecentFeedBackViewModel.cs" />
     <Compile Include="Controllers\ReportGenaratorController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
+    <Compile Include="Controllers\ShowOrglists.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\OrganizationController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -197,6 +199,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\CboxContext.cs" />
     <Compile Include="Models\Complaint.cs" />
+    <Compile Include="Models\OrganizationViewModel.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\Organizatino.cs" />
@@ -223,16 +226,14 @@
     <Content Include="Content\img\common\test_main.jpg" />
     <Content Include="Content\img\common\thank_you.png" />
     <Content Include="Content\img\cp.png" />
-    <Content Include="Content\img\customer_logo\aci.jpg" />
-    <Content Include="Content\img\customer_logo\banglalink.jpg" />
-    <Content Include="Content\img\customer_logo\citycell.jpg" />
-    <Content Include="Content\img\customer_logo\gp.jpg" />
-    <Content Include="Content\img\customer_logo\keya.jpg" />
+    <Content Include="Content\img\customer_logo\aci.png" />
+    <Content Include="Content\img\customer_logo\gp.png" />
+    <Content Include="Content\img\customer_logo\keya.png" />
     <Content Include="Content\img\customer_logo\leading-uni.jpg" />
-    <Content Include="Content\img\customer_logo\metro-uni.jpg" />
+    <Content Include="Content\img\customer_logo\metro-uni.png" />
     <Content Include="Content\img\customer_logo\pran.jpg" />
     <Content Include="Content\img\customer_logo\radhuni.jpg" />
-    <Content Include="Content\img\customer_logo\teletalk.jpg" />
+    <Content Include="Content\img\customer_logo\teletalk.png" />
     <Content Include="Content\img\customer_logo\unilever.jpg" />
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\metis-tile.png" />
@@ -614,6 +615,8 @@
     <Content Include="Views\Admin\Dashboard.cshtml" />
     <Content Include="Content\img\pattern\README.md" />
     <Content Include="Views\Shared\_AdminHeader.cshtml" />
+    <Content Include="Views\Complain\RecentFeedback.cshtml" />
+    <Content Include="Views\Organization\ShowOrglists.cshtml" />
     <None Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

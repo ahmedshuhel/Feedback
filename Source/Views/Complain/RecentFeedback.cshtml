@@ -1,7 +1,7 @@
-﻿@model IEnumerable<ComplaintBox.Web.Models.OrganizationViewModel>
+﻿@model ComplaintBox.Web.Controllers.RecentFeedBackViewModel
 
 @{
-    ViewBag.Title = "Organizations";
+    ViewBag.Title = "Recent Feedbacks";
     Layout = "/Views/Shared/_SeconderyLayout.cshtml";
 }
 
@@ -26,18 +26,19 @@
     <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
             <div class="organization-list">
-                <h1 class="registered-org-header text-center">Registered Organizations</h1>
-
+                <h1 class="registered-org-header text-center">Recent Feedbacks</h1>
+                <h3 class="text-center">@Model.Organization</h3>
                 <div class="list-group">
-                    
-                    
-                    @foreach (var org in Model)
-                    {
 
-                        <a href="#" class="list-group-item active">
-                            <h3 class="list-group-item-heading">@org.Name</h3>
-                            <p class="list-group-item-text">@org.Address <span class="glyphicon glyphicon-earphone"></span>@org.PhoneNumber</p>
-                        </a>
+                    @foreach (var item in Model.RecentFeedbacks)
+                    {
+                        <a href="#" class="list-group-item" title="Click to show the details of the feedback">
+                            <div class="pull-right">
+                                @item.FeedbackDate.ToShortDateString()
+                            </div>
+                            <h3 class="list-group-item-heading">@item.Subject</h3>
+                            <p class="list-group-item-text">@item.Feedback</p>
+                        </a>                    
                     }
                 </div>
 

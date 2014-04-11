@@ -12,10 +12,11 @@ namespace ComplaintBox.Web.Controllers
     {
         [HttpGet]
         public ActionResult NewComplaints(int id)
-        {   Settings setting;
+        {
+            Settings setting;
             List<Complaint> complaints;
-           
-         
+
+
             using (var db = new CboxContext())
             {
                 complaints = db.Complaints
@@ -24,7 +25,7 @@ namespace ComplaintBox.Web.Controllers
                                 .Include(c => c.Subject)
                                 .ToList();
                 setting = db.Settings.FirstOrDefault(s => s.OrganizationId == id);
-              
+
             }
             ViewBag.SubjectTitle = setting.SubjectTitle;
             return View(complaints);
@@ -61,9 +62,9 @@ namespace ComplaintBox.Web.Controllers
             return View("ResolveComplain");
         }
 
-        public ActionResult SaveComment(int id,string Comment)
+        public ActionResult SaveComment(int id, string Comment)
         {
-           
+
 
             using (var db = new CboxContext())
             {
@@ -84,7 +85,7 @@ namespace ComplaintBox.Web.Controllers
                 complaints = db.Complaints.Where(c => c.Status == "Resolved").ToList();
             }
             return View(complaints);
-        
+
         }
 
         [HttpGet]
@@ -107,7 +108,7 @@ namespace ComplaintBox.Web.Controllers
                     }).ToList();
 
 
-                setting = db.Settings.FirstOrDefault(s=> s.OrganizationId == id);
+                setting = db.Settings.FirstOrDefault(s => s.OrganizationId == id);
             }
 
 
@@ -142,7 +143,7 @@ namespace ComplaintBox.Web.Controllers
 
 
             IList<SelectListItem> subjects;
-          
+
             List<Settings> setting;
 
             using (var db = new CboxContext())
@@ -158,7 +159,7 @@ namespace ComplaintBox.Web.Controllers
 
 
                 setting = db.Settings
-                    .OrderBy(s=>s.SubjectTitle)
+                    .OrderBy(s => s.SubjectTitle)
                     .ToList();
 
             }
@@ -179,7 +180,35 @@ namespace ComplaintBox.Web.Controllers
         public ActionResult UserView()
         {
             return View();
-        
+
         }
+
+
+        public ActionResult RecentFeedback(int id)
+        {
+            
+            var viewModel = new RecentFeedBackViewModel();
+            
+            using (var db = new CboxContext())
+            {
+
+               var org = db.Organization.Find(id);
+               viewModel.Organization = org.FullName;
+               viewModel.RecentFeedbacks = db.Complaints
+                   .Where(c=> c.OrganizationId == id)
+                   .Select(c => new RecentFeedback()
+                   {
+                       Subject = c.Subject.Title,
+                       Feedback = c.Description,
+                       FeedbackDate = c.ComplainDate,
+                       CustomerName = c.Complainer
+                   })
+                   .OrderBy(c=> c.FeedbackDate)
+                   .ToList();
+            }
+
+            return View(viewModel);
+        }
+
     }
 }
