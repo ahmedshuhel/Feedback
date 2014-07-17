@@ -54,8 +54,6 @@ namespace ComplaintBox.Web.Controllers
             return View("OrganizationList", orgs);
         }
 
-
-
         public ActionResult OrganizationList()
         {
 
@@ -78,33 +76,6 @@ namespace ComplaintBox.Web.Controllers
 
             return View(orgs);
         }
-
-
-
-        [HttpGet]
-        public ActionResult SignUp()
-        {
-            return View(new SignUpViewModel());
-        }
-
-        [HttpPost]
-        public ActionResult SignUp(SignUpViewModel vm)
-        {
-            var organization = new Organization()
-            {
-                UserName = vm.UserName,
-                Password = vm.Password,
-                EmailAddress = vm.Email,
-            };
-
-            using (var db = new CboxContext())
-            {
-                db.Organization.Add(organization);
-                db.SaveChanges();
-            }
-            return RedirectToAction("OrganizationDetails", new {id = organization.Id});
-        }
-
 
 
         [HttpPost]

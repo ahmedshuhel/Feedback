@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using ComplaintBox.Web.Models;
+using WebMatrix.WebData;
 
 namespace ComplaintBox.Web
 {
@@ -22,6 +23,8 @@ namespace ComplaintBox.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<CboxContext, Migrations.Configuration>());
+            WebSecurity.InitializeDatabaseConnection("CBox", "Organizations", "Id", "UserName", autoCreateTables: true);
+            
         }
     }
 }

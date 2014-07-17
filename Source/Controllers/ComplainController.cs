@@ -62,14 +62,14 @@ namespace ComplaintBox.Web.Controllers
             return View("ResolveComplain");
         }
 
-        public ActionResult SaveComment(int id, string Comment)
+        public ActionResult SaveComment(int id, string comment)
         {
 
 
             using (var db = new CboxContext())
             {
                 var c = db.Complaints.Find(id);
-                c.Comment = Comment;
+                c.Comment = comment;
 
                 db.SaveChanges();
             }

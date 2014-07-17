@@ -16,7 +16,7 @@
     <div class="collapse navbar-collapse" id="navbar-collapse-top-menu">
 
         <div class="navbar-right">            
-            @Html.ActionLink("SIGN UP", "SignUp", "Organization", null , new {@class="btn btn-success navbar-btn"})
+            @Html.ActionLink("SIGN UP", "SignUp", "Account", null , new {@class="btn btn-success navbar-btn"})
 
             <div class="btn-group">
                 <button type="button" class="btn btn-primary navbar-btn dropdown-toggle" data-toggle="dropdown">
@@ -26,22 +26,23 @@
                     <li>
                         <div class="row" style="width: 250px">
                             <div class="col col-lg-12">
-                                <form id="sign-in-form" role="form" style="padding: 10px 10px" class="form-horizontal">
-
+                                <form id="sign-in-form" role="form" action="/Account/Login" method="POST" style="padding: 10px 10px" class="form-horizontal">
+                                    
+                                    @Html.AntiForgeryToken()
                                     <div class="input-group" style="margin: 5px 0px">
                                         <span class="input-group-addon"><span class="fa fa-user"></span></span>
-                                        <input type="email" class="form-control" id="userName" placeholder="User Name">
+                                        <input type="text" class="form-control" id="userName" name="UserName" placeholder="User Name">
                                     </div>
 
 
                                     <div class="input-group" style="margin: 5px 0px">
                                         <span class="input-group-addon"><span class="fa fa-key"></span></span>
-                                        <input type="password" class="form-control" id="password" placeholder="Password">
+                                        <input type="password" class="form-control" id="password" name="Password" placeholder="Password">
                                     </div>
 
                                     <div class="checkbox" style="margin: 5px 0px">
                                         <label>
-                                            <input type="checkbox" id="remembreMe">
+                                            <input type="checkbox" id="remembreMe" name="RememberMe">
                                             Remember Me?
                                         </label>
                                     </div>

@@ -2,49 +2,80 @@
 
 @{
     ViewBag.Title = "Log in";
+    Layout = null;
 }
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-</hgroup>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <meta name="msapplication-TileColor" content="#5bc0de" />
+    <meta name="msapplication-TileImage" content="assets/img/metis-tile.png" />
 
-<section id="loginForm">
-<h2>Use a local account to log in.</h2>
-@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/main.min.css" rel="stylesheet" />
+    <link href="~/Content/css/magic/magic.min.css" rel="stylesheet" />
+</head>
+<body class="login">
+    <div class="container">
+        <div class="text-center">
+            <img src="~/Content/img/common/main_logo.png" height="35px" alt="Feedback">
+        </div>
+        <div class="tab-content">
+            <div id="login" class="tab-pane active">
+                <form action="@Url.Action("Login", "Account")" method="POST" class="form-signin">
+                    <p class="text-muted text-center">
+                        Enter your username and password
+                 
+                    </p>
+                    @Html.AntiForgeryToken()
 
-    <fieldset>
-        <legend>Log in Form</legend>
-        <ol>
-            <li>
-                @Html.LabelFor(m => m.UserName)
-                @Html.TextBoxFor(m => m.UserName)
-                @Html.ValidationMessageFor(m => m.UserName)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.Password)
-                @Html.PasswordFor(m => m.Password)
-                @Html.ValidationMessageFor(m => m.Password)
-            </li>
-            <li>
-                @Html.CheckBoxFor(m => m.RememberMe)
-                @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
-            </li>
-        </ol>
-        <input type="submit" value="Log in" />
-    </fieldset>
-    <p>
-        @Html.ActionLink("Register", "Register") if you don't have an account.
-    </p>
-}
-</section>
+                    <input type="text" placeholder="Username" name="UserName" class="form-control">
+                    <input type="password" placeholder="Password" name="Password" class="form-control">
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                </form>
+            </div>
 
-<section class="social" id="socialLoginForm">
-    <h2>Use another service to log in.</h2>
-    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
-</section>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+            <div id="forgot" class="tab-pane">
+                <form action="index.html" class="form-signin">
+                    <p class="text-muted text-center">Enter your valid e-mail</p>
+                    <input type="email" placeholder="mail@domain.com" required="required" class="form-control">
+                    <br>
+                    <button class="btn btn-lg btn-danger btn-block" type="submit">Recover Password</button>
+                </form>
+            </div>
+            <div id="signup" class="tab-pane">
+                <form action="index.html" class="form-signin">
+                    <input type="text" placeholder="username" class="form-control">
+                    <input type="email" placeholder="mail@domain.com" class="form-control">
+                    <input type="password" placeholder="password" class="form-control">
+                    <button class="btn btn-lg btn-success btn-block" type="submit">Register</button>
+                </form>
+            </div>
+        </div>
+        <div class="text-center">
+            <ul class="list-inline">
+                <li><a class="text-muted" href="#login" data-toggle="tab">Login</a> </li>
+                <li><a class="text-muted" href="#forgot" data-toggle="tab">Forgot Password</a> </li>
+                <li><a class="text-muted" href="#signup" data-toggle="tab">Signup</a> </li>
+            </ul>
+        </div>
+    </div>
+    <!-- /container -->
+    <script src="~/Scripts/js/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/js/bootstrap.min.js"></script>
+    
+    <script>
+        $('.list-inline li > a').click(function () {
+            var activeForm = $(this).attr('href') + ' > form';
+            //console.log(activeForm);
+            $(activeForm).addClass('magictime swap');
+            //set timer to 1 seconds, after that, unload the magic animation
+            setTimeout(function () {
+                $(activeForm).removeClass('magictime swap');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

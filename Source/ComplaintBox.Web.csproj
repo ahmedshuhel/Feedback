@@ -195,12 +195,12 @@
     <Compile Include="Controllers\ShowOrglists.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\OrganizationController.cs" />
-    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\AdminViewModel.cs" />
     <Compile Include="Models\CboxContext.cs" />
     <Compile Include="Models\Complaint.cs" />
     <Compile Include="Models\FeedbackViewModel.cs" />
@@ -209,7 +209,7 @@
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\SignUpViewModel.cs" />
     <Compile Include="Models\Subject.cs" />
-    <Compile Include="Models\Organizatino.cs" />
+    <Compile Include="Models\Organization.cs" />
     <Compile Include="Migrations\SubjectConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -226,6 +226,10 @@
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\admin-main.css" />
     <Content Include="Content\css\admin-theme.css" />
+    <Content Include="Content\css\magic\magic.css" />
+    <Content Include="Content\css\magic\magic.min.css" />
+    <Content Include="Content\css\main.css" />
+    <Content Include="Content\css\main.min.css" />
     <Content Include="Content\css\typeahead.css" />
     <Content Include="Content\img\common\main_logo.png" />
     <Content Include="Content\img\common\main_logo_secondary.png" />
@@ -625,6 +629,9 @@
     <Content Include="Views\Complain\RecentFeedback.cshtml" />
     <Content Include="Views\Organization\OrganizationDetails.cshtml" />
     <Content Include="Views\Feedback\Feedback.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Content\css\magic\magic.styl" />
+    <Content Include="Content\css\magic\README.md" />
     <None Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -650,14 +657,7 @@
     <Content Include="Images\orderedList9.png" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
     <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -685,7 +685,7 @@
     <Content Include="Views\Organization\OrganizationList.cshtml" />
     <Content Include="Views\Complain\Feedback.cshtml" />
     <Content Include="Views\Shared\_SeconderyLayout.cshtml" />
-    <Content Include="Views\Organization\SignUp.cshtml" />
+    <Content Include="Views\Account\SignUp.cshtml" />
     <Content Include="Views\Shared\_FooterPartial.cshtml" />
     <Content Include="Views\Shared\_NavbarPartial.cshtml" />
     <Content Include="Views\Feedback\ThankYou.cshtml" />

@@ -9,7 +9,7 @@ namespace ComplaintBox.Web.Models
     {
         public int Id { get; set; }
         public string SubjectTitle { get; set; }
-        public Organization organaization { get; set; }
+        public Organization Organaization { get; set; }
         public int OrganizationId { get; set; }
     }
 }

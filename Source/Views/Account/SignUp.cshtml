@@ -21,9 +21,11 @@
         <div class="col-lg-offset-4 col-lg-5 ">
 
 
-            @using (Html.BeginForm("SignUp", "Organization", FormMethod.Post, new { id = "signup-form" }))
+            @using (Html.BeginForm("SignUp", "Account", FormMethod.Post, new { id = "signup-form" }))
             {
 
+                @Html.AntiForgeryToken()
+                
                 <h1 class="text-center">Singup And Enjoy!</h1>
 
                 <div class="form-group">
@@ -74,6 +76,9 @@
         </div>
     </div>
 </div>
+
+
+
 
 @section Script
 {

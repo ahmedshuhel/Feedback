@@ -15,6 +15,8 @@ namespace ComplaintBox.Web.Migrations
 
         
 
+        
+
         protected override void Seed(ComplaintBox.Web.Models.CboxContext context)
         {
             //  This method will be called after migrating to the latest version.

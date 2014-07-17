@@ -67,7 +67,7 @@ namespace ComplaintBox.Web.Models
         public string Password { get; set; }
 
         [Display(Name = "Remember me?")]
-        public bool RememberMe { get; set; }
+        public string RememberMe { get; set; }
     }
 
     public class RegisterModel

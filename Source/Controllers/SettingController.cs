@@ -1,8 +1,6 @@
 ﻿using ComplaintBox.Web.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ComplaintBox.Web.Controllers
@@ -13,9 +11,7 @@ namespace ComplaintBox.Web.Controllers
         public ActionResult Setting(int id)
         {
            
-            return View(new Settings() { OrganizationId = id });
-          
-        
+            return View(new Settings() { OrganizationId = id });        
         }
 
         [HttpPost]
@@ -44,15 +40,15 @@ namespace ComplaintBox.Web.Controllers
         }
         public ActionResult ShowSubject()
         {
-            List<Settings> Sub;
+            List<Settings> sub;
 
             using (var db = new CboxContext())
             {
-                Sub = db.Settings.ToList();
+                sub = db.Settings.ToList();
                 db.SaveChanges();
             }
 
-            return View(Sub);
+            return View(sub);
         }
 
     }
