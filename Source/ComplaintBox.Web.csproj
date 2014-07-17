@@ -39,6 +39,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -206,6 +212,7 @@
     <Compile Include="Models\FeedbackViewModel.cs" />
     <Compile Include="Models\OrganizationDetailViewModel.cs" />
     <Compile Include="Models\OrganizationViewModel.cs" />
+    <Compile Include="Models\SetSubjectTitle.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\SignUpViewModel.cs" />
     <Compile Include="Models\Subject.cs" />
@@ -632,6 +639,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Content\css\magic\magic.styl" />
     <Content Include="Content\css\magic\README.md" />
+    <Content Include="Views\Admin\SetSubjectTitle.cshtml" />
     <None Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -728,6 +736,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

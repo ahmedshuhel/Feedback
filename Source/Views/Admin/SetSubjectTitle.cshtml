@@ -1,0 +1,45 @@
+﻿@model ComplaintBox.Web.Models.SetSubjectTitle
+@{    
+    ViewBag.Title = "Dashboard";
+    ViewBag.PageTitle = "Dashboard";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style type="text/css">
+    #topicTitle {
+        padding: 10px 10px 80px 10px;
+    }
+</style>
+
+
+<div class="container">
+
+    <div class="row">
+        
+        <div class="col-xs-6 col-xs-offset-1">
+            <h3>Set Topic Title</h3>    
+             <hr />
+        </div>
+        
+    </div>
+
+
+    <div class="row">
+        @using (Html.BeginForm("SetSubjectTitle", "Admin", FormMethod.Post, new { @class = "form-horizontal", id = "topicTitle" }))
+        {    
+            <div class="form-group">
+
+                @Html.LabelFor(m => m.SubjectTitle, new { @class = "control-label col-xs-2" })
+                <div class="col-xs-5">
+                    @Html.TextBoxFor(m => m.SubjectTitle, new { @class = "form-control" })
+                </div>
+            </div>
+
+       
+            <div class="col-xs-5 col-xs-offset-2">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        }
+    </div>
+
+</div>
