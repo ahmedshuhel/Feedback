@@ -1,4 +1,6 @@
-﻿<ul id="menu" class="collapse">
+﻿@model ComplaintBox.Web.Models.AdminViewModel
+
+<ul id="menu" class="collapse">
     <li class="nav-header">Menu</li>
     <li class="nav-divider"></li>
     <li class="">
@@ -53,38 +55,35 @@
             </li>
         </ul>
     </li>
+    
+    
+    <li>
+        <a href="@Url.Action("SetSubjectTitle", "Admin")">
+            <i class="fa fa-table"></i>&nbsp; Set Topic Title</a>
+        
+       
+    </li>
+
+
     <li class="">
         <a href="javascript:;">
-            <i class="fa fa-pencil"></i>&nbsp;Forms
+            <i class="fa fa-pencil"></i>&nbsp;@Model.SubjectTitle Setup
              
             <span class="fa arrow"></span>
         </a>
         <ul>
             <li class="">
-                <a href="form-general.html">
-                    <i class="fa fa-angle-right"></i>&nbsp;General</a>
+                <a href="@Url.Action("ListTopic", "Admin")">
+                    <i class="fa fa-angle-right"></i>&nbsp;List @Model.SubjectTitle</a>
             </li>
             <li class="">
-                <a href="form-validation.html">
-                    <i class="fa fa-angle-right"></i>&nbsp;Validation</a>
-            </li>
-            <li class="">
-                <a href="form-wysiwyg.html">
-                    <i class="fa fa-angle-right"></i>&nbsp;WYSIWYG</a>
-            </li>
-            <li class="">
-                <a href="form-wizard.html">
-                    <i class="fa fa-angle-right"></i>&nbsp;Wizard &amp; File Upload</a>
+                <a href="@Url.Action("AddNewTopic", "Admin")">
+                    <i class="fa fa-angle-right"></i>&nbsp;Add New @Model.SubjectTitle</a>
             </li>
         </ul>
     </li>
     
-    <li>
-        <a href="@Url.Action("SetSubjectTitle", "Admin")">
-            <i class="fa fa-table"></i>&nbsp; Set Subject Title</a>
-        
-       
-    </li>
+
 
     <li>
         <a href="file.html">

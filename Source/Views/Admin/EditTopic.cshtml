@@ -1,4 +1,4 @@
-﻿@model ComplaintBox.Web.Models.SetSubjectTitle
+﻿@model ComplaintBox.Web.Models.EditTopicViewModel
 @{    
     ViewBag.Title = "Dashboard";
     ViewBag.PageTitle = "Dashboard";
@@ -6,7 +6,7 @@
 }
 
 <style type="text/css">
-    #topicTitle {
+    #editTopic {
         padding: 10px 10px 80px 10px;
     }
 </style>
@@ -17,7 +17,7 @@
     <div class="row">
         
         <div class="col-xs-6 col-xs-offset-1">
-            <h3>Set Topic Title</h3>    
+            <h3>Edit @Model.SubjectTitle</h3>    
              <hr />
         </div>
         
@@ -25,19 +25,21 @@
 
 
     <div class="row">
-        @using (Html.BeginForm("SetSubjectTitle", "Admin", FormMethod.Post, new { @class = "form-horizontal", id = "topicTitle" }))
+        @using (Html.BeginForm("EditTopic", "Admin", FormMethod.Post, new { @class = "form-horizontal", id = "editTopic" }))
         {    
             <div class="form-group">
-
-                @Html.LabelFor(m => m.NewSubjectTitle, new { @class = "control-label col-xs-2" })
+                
+                <label for="TopicTitle" class="control-label col-xs-2">@Model.SubjectTitle</label>
                 <div class="col-xs-5">
-                    @Html.TextBoxFor(m => m.NewSubjectTitle, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.TopicTitle, new { @class = "form-control" })
+                    @Html.HiddenFor(m=> m.TopicId)
                 </div>
+
             </div>
 
        
             <div class="col-xs-5 col-xs-offset-2">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Update" class="btn btn-primary" />
             </div>
         }
     </div>
