@@ -3,25 +3,15 @@
 <ul id="menu" class="collapse">
     <li class="nav-header">Menu</li>
     <li class="nav-divider"></li>
-    <li class="">
-        <a href="javascript:;">
-            <i class="fa fa-dashboard"></i>
-            <span class="link-title">Dashboard</span>
-            <span class="fa arrow"></span>
-        </a>
-        <ul>
-            <li class="">
-                <a href="dashboard.html">
-                    <i class="fa fa-angle-right"></i>&nbsp;Default Style
-                </a>
-            </li>
-            <li class="">
-                <a href="alterne.html">
-                    <i class="fa fa-angle-right"></i>&nbsp;Alternative Style
-                </a>
-            </li>
-        </ul>
+    
+    
+    <li>
+        <a href="@Url.Action("Index", "Admin")">
+            <i class="fa fa-users"></i>&nbsp; Dashboard</a>
+        
+       
     </li>
+    
     <li class="">
         <a href="javascript:;">
             <i class="fa fa-tasks"></i>&nbsp;Feedbacks
@@ -30,7 +20,7 @@
         </a>
         <ul>
             <li class="">
-                <a href="@Url.Action("RecentFeedbackList", "Admin")">
+                <a href="@Url.Action("FeedbackList", "Admin")">
                     <i class="fa fa-angle-right"></i>&nbsp;Recent Feedbacks</a>
             </li>
             <li class="">
@@ -44,7 +34,30 @@
         </ul>
     </li>
     
-   <li>
+        <li class="">
+        <a href="javascript:;">
+            <i class="fa fa-tasks"></i>&nbsp;Filter Feedbacks
+             
+            <span class="fa arrow"></span>
+        </a>
+        <ul>
+            <li class="">
+                <a href="@Url.Action("TodaysFeedback", "Admin")">
+                    <i class="fa fa-angle-right"></i>&nbsp;Today's Feedbacks</a>
+            </li>
+            <li class="">
+                <a href="@Url.Action("NewFeedbackList", "Admin")">
+                    <i class="fa fa-angle-right"></i>&nbsp;Pending Feedbacks</a>
+            </li>
+            <li class="">
+                <a href="@Url.Action("ResolvedFeedbackList", "Admin")">
+                    <i class="fa fa-angle-right"></i>&nbsp;Resolved Feedbacks</a>
+            </li>
+        </ul>
+    </li>
+
+    
+    <li>
         <a href="@Url.Action("OrganizationDetails", "Admin")">
             <i class="fa fa-users"></i>&nbsp; Set Organization Detials</a>
         

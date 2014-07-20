@@ -293,7 +293,7 @@ namespace ComplaintBox.Web.Controllers
 
                 if (fromDate != null && toDate != null)
                 {
-                    query = query.Where(c => c.ComplainDate >= fromDate && c.ComplainDate <= toDate);    
+                    query = query.Where(c => c.ComplainDate >= fromDate && c.ComplainDate < toDate);    
                 }
 
 
@@ -304,7 +304,7 @@ namespace ComplaintBox.Web.Controllers
 
 
 
-                feedbacks =   query
+                feedbacks =   query.Where(c=> c.OrganizationId == viewModel.OrganizationId)
                               .OrderBy(c=> c.ComplainDate)
                               .AsEnumerable()
                               .Select(c => new FeedBackViewModel()
@@ -325,12 +325,26 @@ namespace ComplaintBox.Web.Controllers
             return model;
         }
 
-        public ActionResult RecentFeedbackList(int? page)
+        public ActionResult FeedbackList(int? page)
         {
+            ViewBag.FeedbackListTitle = "Recent Feedback List";
+
             var model = GetFeedbackList("ALL", page);
             return View(model);
         }
 
+
+        public ActionResult TodaysFeedback(int? page)
+        {
+
+            ViewBag.FeedbackListTitle = "Today's Feedback List";
+
+            DateTime? fromDate = DateTime.Today;
+            DateTime? toDate = DateTime.Today.AddDays(1);
+
+            var model = GetFeedbackList("ALL", page, null, fromDate, toDate);
+            return View("FeedbackList", model);
+        }
 
         public ActionResult ResolvedFeedbackList(int? page)
         {

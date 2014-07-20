@@ -16,7 +16,7 @@
     <div class="row">
 
 
-        <h2>Recent Feedback List</h2>
+        <h2>@ViewBag.FeedbackListTitle</h2>
 
         <table class="table table-striped table-hover">
             <tr>
@@ -68,27 +68,22 @@
 
     <div class="row">
         <div class="pager">
-            @Html.Raw(Ajax.Pager(
+            @Html.Raw(Html.Pager(
                 new Options
                     {
                         PageSize = pagedModel.PageSize,
                         TotalItemCount = pagedModel.TotalItemCount,
                         CurrentPage = pagedModel.PageNumber,
-                        ItemTexts = new ItemTexts {Next = "Next", Previous = "Previous", Page = "P"},
+                        ItemTexts = new ItemTexts {Next = "Next", Previous = "Previous", Page = ""},
                         ItemIcon = new ItemIcon {First = "icon-backward", Previous = "icon-chevron-left", Next = "icon-chevron-right", Last = "icon-forward"},
                         TooltipTitles = new TooltipTitles {Next = "Next page", Previous = "Previous page", Page = "Go to page {0}.", First = "Go To First Page", Last = "Go To Last Page"},
                         Size = Size.normal,
                         Alignment = Alignment.centered,
                         IsShowControls = true,
-                        IsShowFirstLast = true
+                        IsShowFirstLast = true,
+                        IsShowPages = true
                     },
-                new AjaxOptions
-                    {
-                        UpdateTargetId = "grid-list",
-                        OnBegin = "beginPaging",
-                        OnSuccess = "successPaging",
-                        OnFailure = "failurePaging"
-                    }, new {controller = "Admin", action = "RecentFeedbackList"}))
+               new {controller = "Admin", action = "FeedbackList"}))
         </div>
     </div>
 
