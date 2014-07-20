@@ -15,45 +15,56 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-collapse-top-menu">
 
-        <div class="navbar-right">            
-            @Html.ActionLink("SIGN UP", "SignUp", "Account", null , new {@class="btn btn-success navbar-btn"})
+        <div class="navbar-right">
+             
+            
+            @if (!Request.IsAuthenticated)
+            {
 
-            <div class="btn-group">
-                <button type="button" class="btn btn-primary navbar-btn dropdown-toggle" data-toggle="dropdown">
-                    LOG IN <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu pull-right" role="menu">
-                    <li>
-                        <div class="row" style="width: 250px">
-                            <div class="col col-lg-12">
-                                <form id="sign-in-form" role="form" action="/Account/Login" method="POST" style="padding: 10px 10px" class="form-horizontal">
+                @Html.ActionLink("SIGN UP", "SignUp", "Account", null, new {@class = "btn btn-success navbar-btn"})
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary navbar-btn dropdown-toggle" data-toggle="dropdown">
+                        LOG IN <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right" role="menu">
+                        <li>
+                            <div class="row" style="width: 250px">
+                                <div class="col col-lg-12">
+                                    <form id="sign-in-form" role="form" action="/Account/Login" method="POST" style="padding: 10px 10px" class="form-horizontal">
                                     
-                                    @Html.AntiForgeryToken()
-                                    <div class="input-group" style="margin: 5px 0px">
-                                        <span class="input-group-addon"><span class="fa fa-user"></span></span>
-                                        <input type="text" class="form-control" id="userName" name="UserName" placeholder="User Name">
-                                    </div>
+                                        @Html.AntiForgeryToken()
+                                        <div class="input-group" style="margin: 5px 0px">
+                                            <span class="input-group-addon"><span class="fa fa-user"></span></span>
+                                            <input type="text" class="form-control" id="userName" name="UserName" placeholder="User Name">
+                                        </div>
 
 
-                                    <div class="input-group" style="margin: 5px 0px">
-                                        <span class="input-group-addon"><span class="fa fa-key"></span></span>
-                                        <input type="password" class="form-control" id="password" name="Password" placeholder="Password">
-                                    </div>
+                                        <div class="input-group" style="margin: 5px 0px">
+                                            <span class="input-group-addon"><span class="fa fa-key"></span></span>
+                                            <input type="password" class="form-control" id="password" name="Password" placeholder="Password">
+                                        </div>
 
-                                    <div class="checkbox" style="margin: 5px 0px">
-                                        <label>
-                                            <input type="checkbox" id="remembreMe" name="RememberMe">
-                                            Remember Me?
-                                        </label>
-                                    </div>
+                                        <div class="checkbox" style="margin: 5px 0px">
+                                            <label>
+                                                <input type="checkbox" id="remembreMe" name="RememberMe">
+                                                Remember Me?
+                                            </label>
+                                        </div>
 
-                                    <button type="submit" class="btn btn-primary btn-block">Login</button>
-                                </form>
+                                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+                        </li>
+                    </ul>
+                </div>
+            }
+            else
+            {
+                    @Html.ActionLink("ADMIN AREA", "Index", "Admin", null, new {@class = "btn btn-success navbar-btn"})
+            }
+            
+
         </div>
 
 

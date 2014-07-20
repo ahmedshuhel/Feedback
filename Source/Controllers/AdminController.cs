@@ -42,29 +42,54 @@ namespace ComplaintBox.Web.Controllers
 
 
 
-
+        [OutputCache(Duration = 60)]
         public ActionResult LastSevenDaysFeedbackChart()
         {
+
+            var userName = User.Identity.Name;
 
             DateTime fromDate = DateTime.Today.AddDays(-7);
             DateTime toDate = DateTime.Today.AddDays(1);
 
+            Organization org;
+            using (var db = new CboxContext())
+            {
+                org = db.Organization.First(o => o.UserName == userName);
+            }
 
-            int orgId = 2;
+            int orgId = org.Id;
 
             var feedbacks = GetFeedbacks("ALL", null, fromDate, toDate, orgId);
+            var data = new List<ChartDataField>();
 
-            var chart = new Chart(width: 300, height: 300)
+
+            var startDate = fromDate;
+
+            for (int i = 0; i < 7; i++)
+            {
+                var dataField = new ChartDataField()
+                    {
+                        XValue = startDate.DayOfWeek.ToString(), 
+                        YValue = feedbacks.Count(f => f.FeedbackDate.Date == startDate.Date).ToString()
+                    };
+
+                data.Add(dataField);
+               startDate = startDate.AddDays(1);
+            }
+
+
+            var chart = new Chart(width: 400, height: 300, theme: ChartTheme.Green)
                 .AddTitle("Feedback Frequency")
-                
-                .AddSeries(         
-                name: "Frequency",
-                xValue: new[] { "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" },
-                yValues: new[] { "23", "3", "0", "1", "3", "35", "34" });
-
+                .AddSeries(name: "Default", xField: "XValue", xValue: data, yFields: "YValue", yValues: data);
+            
             return File(chart.ToWebImage().GetBytes(), "image/jpeg");
         }
 
+        public class ChartDataField
+        {
+            public string XValue { get; set; }
+            public string YValue { get; set; }           
+        }
 
         private static AdminViewModel GetAdminViewModel(string userName)
         {
@@ -73,12 +98,15 @@ namespace ComplaintBox.Web.Controllers
 
             int numberOfPendingTopics;
             int numberOfResolvedFeedbacks;
+
+            DateTime today = DateTime.Today;
+            DateTime tomorrow = DateTime.Today.AddDays(1);
+
             using (var db = new CboxContext())
             {
                 org = db.Organization.First(o => o.UserName == userName);
-                numberOfPendingTopics = db.Complaints.Count(c => c.Status == "NEW" && c.OrganizationId == org.Id);
-                numberOfResolvedFeedbacks =
-                    db.Complaints.Count(c => c.Status == "RESOLVED" && c.OrganizationId == org.Id);
+                numberOfPendingTopics = db.Complaints.Count(c => c.Status == "NEW" && c.OrganizationId == org.Id && c.ComplainDate >= today && c.ComplainDate < tomorrow);
+                numberOfResolvedFeedbacks = db.Complaints.Count(c => c.Status == "RESOLVED" && c.OrganizationId == org.Id && c.ComplainDate >= today && c.ComplainDate < tomorrow);
                 settings = db.Settings.FirstOrDefault(s => s.OrganizationId == org.Id);
             }
 
