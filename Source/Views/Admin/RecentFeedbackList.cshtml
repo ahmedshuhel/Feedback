@@ -31,7 +31,7 @@
                 <td>@Html.DisplayFor(modelItem=> item.Topic)</td>
                 <td>@Html.DisplayFor(modelItem=> item.Status)</td>
                 <td>                  
-                    <a href="@Url.Action("EditTopic", new { id = item.FeedbackId })"> <span class="fa fa-table"></span></a>                   
+                    <a href="@Url.Action("FeedbackDetails", new { id = item.FeedbackId })"> <span class="fa fa-table"></span></a>                   
                 </td>
             </tr>
         }

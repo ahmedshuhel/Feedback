@@ -242,11 +242,21 @@ namespace ComplaintBox.Web.Controllers
         public ActionResult OrganizationDetails()
         {
             var adminVm = GetAdminViewModel(User.Identity.Name);
+            var model = Mapper.DynamicMap<AdminViewModel, OrganizationDetailViewModel>(adminVm);
 
-            return View(new OrganizationDetailViewModel()
-            {
-                Id = adminVm.OrganizationId
-            });
+            var db = new CboxContext();
+
+            var organization = db.Organization.Find(adminVm.OrganizationId);
+
+
+            model.Id = model.OrganizationId;
+            model.OrganizationName = organization.FullName;
+            model.PhoneNumber = organization.PhoneNumber;
+            model.Address = organization.Address;
+
+
+
+            return View(model);
         }
 
 
@@ -307,6 +317,47 @@ namespace ComplaintBox.Web.Controllers
         {
             var model = GetFeedbackList("NEW");
             return View(model);
+        }
+
+        public ActionResult FeedbackDetails(int id)
+        {
+            var admivVm = GetAdminViewModel(User.Identity.Name);
+            
+            
+            var model = Mapper.DynamicMap<AdminViewModel, FeedbackDetailsViewModel>(admivVm);
+
+            Complaint complaint;
+            using (var db = new CboxContext())
+            {
+                complaint = db.Complaints.Where(c => c.Id == id).Include(c => c.Subject).First();
+            }
+
+            model.FeedbackUser = complaint.Complainer;
+            model.FeedbackDate = complaint.ComplainDate;
+            model.Email = complaint.EmailAddress;
+            model.Phone = complaint.PhoneNumber;
+            model.Comment = complaint.Comment;
+            model.Feedback = complaint.Description;
+            model.Status = complaint.Status;
+            model.Topic = complaint.Subject.Title;
+            model.FeedbackId = complaint.Id;
+
+            return View(model);
+        }
+
+        public ActionResult ResolveFeedback(FeedbackDetailsViewModel vm)
+        {
+
+            using (var db = new CboxContext())
+            {
+               var  complaint = db.Complaints.Find(vm.FeedbackId);
+                complaint.Comment = vm.Comment;
+                complaint.Status = "RESOLVED";
+                db.SaveChanges();
+            }
+
+
+            return RedirectToAction("ResolvedFeedbackList");
         }
 
     }

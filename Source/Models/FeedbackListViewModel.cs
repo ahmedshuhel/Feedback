@@ -19,7 +19,9 @@ namespace ComplaintBox.Web.Models
         public int FeedbackId { get; set; }
     }
 
-    public class FeedbackDetailsViewModel
+
+
+    public class FeedbackDetailsViewModel : AdminViewModel
     {
         public string FeedbackUser { get; set; }
         public string Email { get; set; }
@@ -29,5 +31,8 @@ namespace ComplaintBox.Web.Models
         public string Topic { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
+
+        public string Comment { get; set; }
+        public int FeedbackId { get; set; }
     }
 }
