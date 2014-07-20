@@ -8,14 +8,7 @@ namespace ComplaintBox.Web.Controllers
     public class OrganizationController : Controller
     {
 
-        [HttpGet]
-        public ActionResult OrganizationDetails(int id)
-        {
-            return View(new OrganizationDetailViewModel()
-                {
-                    Id = id
-                });
-        }
+
 
         [HttpGet]
         public ActionResult SearchOrganizations()
@@ -77,21 +70,5 @@ namespace ComplaintBox.Web.Controllers
             return View(orgs);
         }
 
-
-        [HttpPost]
-        public ActionResult OrganizationDetails(OrganizationDetailViewModel vm)
-        {
-            using (var db = new CboxContext())
-            {
-                var org = db.Organization.Find(vm.Id);
-                org.FullName = vm.OrganizationName;
-                org.PhoneNumber = vm.PhoneNumber;
-                org.Address = vm.Address;
-
-                db.SaveChanges();
-            }
-
-            return RedirectToAction("OrganizationList");
-        }
     }
 }

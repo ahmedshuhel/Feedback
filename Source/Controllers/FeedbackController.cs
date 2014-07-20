@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using ComplaintBox.Web.Models;
+using System.Linq;
 
 namespace ComplaintBox.Web.Controllers
 {
@@ -10,16 +12,28 @@ namespace ComplaintBox.Web.Controllers
         public ActionResult Feedback(int id)
         {
             Organization org;
+            List<Subject> subjects;
+            Settings settings;
             using (var db = new CboxContext())
             {
                 org = db.Organization.Find(id);
+                subjects = db.Subjects.Where(s=> s.OrganizationId == id).ToList();
+                settings = db.Settings.FirstOrDefault(s => s.OrganizationId == id);
             }
 
             ViewBag.OrganizationName = org.FullName;
 
+            IEnumerable<SelectListItem> subjectList = subjects.Select(s => new SelectListItem()
+                {
+                    Text = s.Title, Value = s.Id.ToString()
+                });
+
+
             return View(new FeedbackViewModel()
                 {
-                    OrganizationId = id
+                    OrganizationId = id,
+                    Subjects = subjectList,
+                    TopicTitle = settings != null && !string.IsNullOrEmpty(settings.SubjectTitle) ? settings.SubjectTitle : "Topic"
                 });
         }
 
@@ -38,10 +52,12 @@ namespace ComplaintBox.Web.Controllers
                         Complainer = vm.Name,
                         Description = vm.Feedback,
                         ComplainDate = DateTime.Today,
+                        SubjectId = vm.TopicId,
                         Status = "NEW"
                     };
 
                 db.Complaints.Add(complaint);
+                db.SaveChanges();
             }
 
             return RedirectToAction("ThankYou", new {name = vm.Name});

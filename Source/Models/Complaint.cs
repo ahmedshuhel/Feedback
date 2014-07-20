@@ -44,10 +44,6 @@ namespace ComplaintBox.Web.Models
         [StringLength(100, MinimumLength = 10, ErrorMessage=  "Your Complain must be atleast 10 character long and maximum of 100 characters.")]
         public string Description { get; set; }
 
-        [Required]   
-        [Range(1,10,ErrorMessage=  "please Rate this Service between 10. ")]
-        public int Rating { get; set; }
-
         public DateTime ComplainDate { get; set; }
 
         public string Status { get; set; }

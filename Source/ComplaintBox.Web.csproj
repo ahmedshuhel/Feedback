@@ -210,6 +210,7 @@
     <Compile Include="Models\CboxContext.cs" />
     <Compile Include="Models\Complaint.cs" />
     <Compile Include="Models\EditTopicViewModel.cs" />
+    <Compile Include="Models\FeedbackListViewModel.cs" />
     <Compile Include="Models\FeedbackViewModel.cs" />
     <Compile Include="Models\ListTopicViewModel.cs" />
     <Compile Include="Models\NewTopicViewModel.cs" />
@@ -633,7 +634,7 @@
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\FontAwesome.otf" />
-    <Content Include="Views\Admin\Dashboard.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Content\img\pattern\README.md" />
     <Content Include="Views\Shared\_AdminHeader.cshtml" />
     <Content Include="Views\Complain\RecentFeedback.cshtml" />
@@ -646,6 +647,10 @@
     <Content Include="Views\Admin\ListTopic.cshtml" />
     <Content Include="Views\Admin\AddNewTopic.cshtml" />
     <Content Include="Views\Admin\EditTopic.cshtml" />
+    <Content Include="Views\Admin\OrganizationDetails.cshtml" />
+    <Content Include="Views\Admin\RecentFeedbackList.cshtml" />
+    <Content Include="Views\Admin\ResolvedFeedbackList.cshtml" />
+    <Content Include="Views\Admin\NewFeedbackList.cshtml" />
     <None Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

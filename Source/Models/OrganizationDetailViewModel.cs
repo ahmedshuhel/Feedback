@@ -2,7 +2,7 @@
 
 namespace ComplaintBox.Web.Models
 {
-    public class OrganizationDetailViewModel
+    public class OrganizationDetailViewModel : AdminViewModel
     {
         [HiddenInput]
         public int Id { get; set; }

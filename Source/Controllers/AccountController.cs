@@ -30,12 +30,11 @@ namespace ComplaintBox.Web.Controllers
         public ActionResult Login(LoginModel model, string returnUrl)
         {
 
-
             bool rememberMe = model.RememberMe == "Checked";
 
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: rememberMe))
             {
-                return RedirectToAction("Dashboard", "Admin");
+                return RedirectToAction("Index", "Admin");
             }
 
             // If we got this far, something failed, redisplay form
@@ -51,7 +50,6 @@ namespace ComplaintBox.Web.Controllers
         public ActionResult LogOff()
         {
             WebSecurity.Logout();
-
             return RedirectToAction("Index", "Home");
         }
 
@@ -69,10 +67,8 @@ namespace ComplaintBox.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SignUp(SignUpViewModel vm)
         {
-
             if (ModelState.IsValid)
             {
-
                 try
                 {
                     WebSecurity.CreateUserAndAccount(vm.UserName, vm.Password);
@@ -91,7 +87,7 @@ namespace ComplaintBox.Web.Controllers
                     }
 
 
-                    return RedirectToAction("Dashboard", "Admin");
+                    return RedirectToAction("Index", "Admin");
                 }
                 catch (MembershipCreateUserException e)
                 {

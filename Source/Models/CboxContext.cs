@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+﻿using System.Data.Entity;
 
 namespace ComplaintBox.Web.Models
 {
-    public class CboxContext:DbContext
+    public class CboxContext : DbContext
     {
         public CboxContext()
             : base("CBox")

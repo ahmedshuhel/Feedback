@@ -3,13 +3,14 @@ using System.Web.Mvc;
 using AutoMapper;
 using ComplaintBox.Web.Models;
 using System.Linq;
+using System.Data.Entity;
 
 namespace ComplaintBox.Web.Controllers
 {
     public class AdminController : Controller
     {
 
-        public ActionResult Dashboard()
+        public ActionResult Index()
         {
             string name = User.Identity.Name;
             var model = GetAdminViewModel(name);
@@ -65,7 +66,7 @@ namespace ComplaintBox.Web.Controllers
             {
                 settings = db.Settings.FirstOrDefault(s => s.OrganizationId == adminViewModel.OrganizationId);
             }
-            
+
             var subjectTitle = Mapper.DynamicMap<AdminViewModel, SetSubjectTitle>(adminViewModel);
 
             if (settings != null)
@@ -121,7 +122,7 @@ namespace ComplaintBox.Web.Controllers
 
 
             List<Subject> subjects;
-            
+
             using (var db = new CboxContext())
             {
                 subjects = db.Subjects.Where(s => s.OrganizationId == adminViewModel.OrganizationId).ToList();
@@ -148,7 +149,7 @@ namespace ComplaintBox.Web.Controllers
 
             newTopic.TopicTitle = "";
             newTopic.OrgId = adminVm.OrganizationId;
-            
+
             return View(newTopic);
         }
 
@@ -173,8 +174,6 @@ namespace ComplaintBox.Web.Controllers
 
             return View(topic);
         }
-
-
 
         [HttpPost]
         public ActionResult EditTopic(EditTopicViewModel model)
@@ -203,8 +202,6 @@ namespace ComplaintBox.Web.Controllers
             return RedirectToAction("ListTopic");
         }
 
-
-
         [HttpPost]
         public ActionResult AddNewTopic(NewTopicViewModel model)
         {
@@ -221,6 +218,95 @@ namespace ComplaintBox.Web.Controllers
             }
 
             return RedirectToAction("ListTopic");
+        }
+
+
+        [HttpPost]
+        public ActionResult OrganizationDetails(OrganizationDetailViewModel vm)
+        {
+            using (var db = new CboxContext())
+            {
+                var org = db.Organization.Find(vm.Id);
+                org.FullName = vm.OrganizationName;
+                org.PhoneNumber = vm.PhoneNumber;
+                org.Address = vm.Address;
+
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
+        [HttpGet]
+        public ActionResult OrganizationDetails()
+        {
+            var adminVm = GetAdminViewModel(User.Identity.Name);
+
+            return View(new OrganizationDetailViewModel()
+            {
+                Id = adminVm.OrganizationId
+            });
+        }
+
+
+        public ActionResult RecentFeedbackList()
+        {
+            var model = GetFeedbackList("ALL");
+            return View(model);
+        }
+
+        private FeedbackListViewModel GetFeedbackList(string status)
+        {
+            var viewModel = GetAdminViewModel(User.Identity.Name);
+            var model = Mapper.DynamicMap<AdminViewModel, FeedbackListViewModel>(viewModel);
+
+            List<FeedBackViewModel> feedbacks;
+
+            using (var db = new CboxContext())
+            {
+
+                var query = db.Complaints.Where(c => c.OrganizationId == viewModel.OrganizationId)
+                              .Include(c => c.Subject);
+
+                if (status == "NEW")
+                {
+                    query = query.Where(c => c.Status == "NEW");
+                }
+                if (status == "RESOLVED")
+                {
+                    query = query.Where(c => c.Status == "RESOLVED");
+                }
+
+                feedbacks =   query.AsEnumerable()
+                              .Select(c => new FeedBackViewModel()
+                                  {
+                                      Email = c.EmailAddress,
+                                      FeedbackUser = c.Complainer,
+                                      FeedbackDate = c.ComplainDate,
+                                      Feedback = c.Description,
+                                      Topic = c.Subject == null ? "" : c.Subject.Title,
+                                      FeedbackId = c.Id,
+                                      Status = c.Status
+                                  }).ToList();
+            }
+
+
+            model.FeedBackViewModels = feedbacks;
+            return model;
+        }
+
+
+        public ActionResult ResolvedFeedbackList()
+        {
+            var model = GetFeedbackList("RESOLVED");
+            return View(model);
+        }
+
+        public ActionResult NewFeedbackList()
+        {
+            var model = GetFeedbackList("NEW");
+            return View(model);
         }
 
     }

@@ -24,38 +24,33 @@
     </li>
     <li class="">
         <a href="javascript:;">
-            <i class="fa fa-tasks"></i>&nbsp;Components
+            <i class="fa fa-tasks"></i>&nbsp;Feedbacks
              
             <span class="fa arrow"></span>
         </a>
         <ul>
             <li class="">
-                <a href="icon.html">
-                    <i class="fa fa-angle-right"></i>&nbsp;Icon</a>
+                <a href="@Url.Action("RecentFeedbackList", "Admin")">
+                    <i class="fa fa-angle-right"></i>&nbsp;Recent Feedbacks</a>
             </li>
             <li class="">
-                <a href="button.html">
-                    <i class="fa fa-angle-right"></i>&nbsp;Button</a>
+                <a href="@Url.Action("NewFeedbackList", "Admin")">
+                    <i class="fa fa-angle-right"></i>&nbsp;Pending Feedbacks</a>
             </li>
             <li class="">
-                <a href="progress.html">
-                    <i class="fa fa-angle-right"></i>&nbsp;Progress</a>
-            </li>
-            <li class="">
-                <a href="pricing.html">
-                    <i class="fa fa-credit-card"></i>&nbsp;Pricing Table</a>
-            </li>
-            <li class="">
-                <a href="bgimage.html">
-                    <i class="fa fa-angle-right"></i>&nbsp;Bg Image</a>
-            </li>
-            <li class="">
-                <a href="bgcolor.html">
-                    <i class="fa fa-angle-right"></i>&nbsp;Bg Color</a>
+                <a href="@Url.Action("ResolvedFeedbackList", "Admin")">
+                    <i class="fa fa-angle-right"></i>&nbsp;Resolved Feedbacks</a>
             </li>
         </ul>
     </li>
     
+   <li>
+        <a href="@Url.Action("OrganizationDetails", "Admin")">
+            <i class="fa fa-users"></i>&nbsp; Set Organization Detials</a>
+        
+       
+    </li>
+
     
     <li>
         <a href="@Url.Action("SetSubjectTitle", "Admin")">

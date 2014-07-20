@@ -1,3 +1,5 @@
+using ComplaintBox.Web.Models;
+
 namespace ComplaintBox.Web.Migrations
 {
     using System;
@@ -17,7 +19,7 @@ namespace ComplaintBox.Web.Migrations
 
         
 
-        protected override void Seed(ComplaintBox.Web.Models.CboxContext context)
+        protected override void Seed(Models.CboxContext context)
         {
             //  This method will be called after migrating to the latest version.
 
@@ -31,6 +33,7 @@ namespace ComplaintBox.Web.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
         }
     }
 }

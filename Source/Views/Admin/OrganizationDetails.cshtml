@@ -1,27 +1,26 @@
 ﻿@model ComplaintBox.Web.Models.OrganizationDetailViewModel
-
-@{
-    Layout = "~/Views/Shared/_SeconderyLayout.cshtml";   
+@{    
+    ViewBag.Title = "Dashboard";
+    ViewBag.PageTitle = "Dashboard";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-@section Style{
-    <style type="text/css">
-        #detail-form {
-            background-color: #ffffff;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            margin-top: 20px;
-            padding: 15px 50px;
-        }
-    </style>
-}
+<style type="text/css">
+    #detail-form {
+        background-color: #ffffff;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        padding: 15px 50px;
+    }
+</style>
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-offset-4 col-lg-5 ">
+        <div class="col-sm-offset-1 col-sm-7 ">
 
 
-            @using (Html.BeginForm("OrganizationDetails", "Organization", FormMethod.Post, new { id = "detail-form" }))
+            @using (Html.BeginForm("OrganizationDetails", "Admin", FormMethod.Post, new { id = "detail-form" }))
             {
 
                 <h1 class="text-center">Organization Details!</h1>
