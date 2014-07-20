@@ -25,7 +25,7 @@
                     </h1>
                     <p class="tagline">search organization and see infomation including customer ratings!</p>
                     
-                    @using (Html.BeginForm("SearchOrganizations", "Organization", FormMethod.Post, new {id="search-org-form"}))
+                    @using (Html.BeginForm("OrganizationSearch", "Organization", FormMethod.Get, new { id = "search-org-form" }))
                     {
                         <div class="typeahead-demo">
                             <input class="typeahead" placeholder="registerd organization list" name="searchTerm">
@@ -36,7 +36,7 @@
                         
                     }
                     <span class="links links-examples">
-                        <a href="@Url.Action("OrganizationList")">or see top 10 organizations</a>
+                        <a href="@Url.Action("OrganizationList")">or see top 100 organizations</a>
                     </span>
                 </div>
         </div>

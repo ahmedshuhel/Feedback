@@ -195,14 +195,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\ComplainController.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\RecentFeedBackViewModel.cs" />
-    <Compile Include="Controllers\ReportGenaratorController.cs" />
-    <Compile Include="Controllers\SettingController.cs" />
-    <Compile Include="Controllers\ShowOrglists.cs" />
-    <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\OrganizationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -222,6 +216,8 @@
     <Compile Include="Models\OrganizationDetailViewModel.cs" />
     <Compile Include="Models\OrganizationStatus.cs" />
     <Compile Include="Models\OrganizationViewModel.cs" />
+    <Compile Include="Models\RecentFeedback.cs" />
+    <Compile Include="Models\RecentFeedBackViewModel.cs" />
     <Compile Include="Models\SetSubjectTitle.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\SignUpViewModel.cs" />
@@ -631,7 +627,6 @@
     <Content Include="Scripts\js\typeahead.js" />
     <Content Include="Scripts\js\typeahead.min.js" />
     <Content Include="Scripts\js\wysihtml5-0.3.0.min.js" />
-    <Content Include="Views\favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
@@ -642,27 +637,10 @@
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\FontAwesome.otf" />
-    <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Content\img\pattern\README.md" />
-    <Content Include="Views\Shared\_AdminHeader.cshtml" />
-    <Content Include="Views\Complain\RecentFeedback.cshtml" />
-    <Content Include="Views\Organization\OrganizationDetails.cshtml" />
-    <Content Include="Views\Feedback\Feedback.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Content\css\magic\magic.styl" />
     <Content Include="Content\css\magic\README.md" />
-    <Content Include="Views\Admin\SetSubjectTitle.cshtml" />
-    <Content Include="Views\Admin\ListTopic.cshtml" />
-    <Content Include="Views\Admin\AddNewTopic.cshtml" />
-    <Content Include="Views\Admin\EditTopic.cshtml" />
-    <Content Include="Views\Admin\OrganizationDetails.cshtml" />
-    <Content Include="Views\Admin\FeedbackList.cshtml" />
-    <Content Include="Views\Admin\ResolvedFeedbackList.cshtml" />
-    <Content Include="Views\Admin\NewFeedbackList.cshtml" />
-    <Content Include="Views\Admin\FeedbackDetails.cshtml" />
-    <Content Include="Views\Admin\AdvancedFeedbackFilter.cshtml" />
-    <Content Include="Views\Admin\AdvancedFeedbackList.cshtml" />
-    <None Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\favicon.ico" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -685,43 +663,6 @@
     <Content Include="Images\orderedList7.png" />
     <Content Include="Images\orderedList8.png" />
     <Content Include="Images\orderedList9.png" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\Complain\NewComplaints.cshtml" />
-    <Content Include="Views\Complain\ResolveComplain.cshtml" />
-    <Content Include="Views\Subject\AddSubject.cshtml" />
-    <Content Include="Views\Subject\EditTitle.cshtml" />
-    <Content Include="Views\Subject\ShowTitle.cshtml" />
-    <Content Include="Views\ReportGenarator\DateWiseComplaints.cshtml" />
-    <Content Include="Views\ReportGenarator\ShowDateWiseComplaint.cshtml" />
-    <Content Include="Views\ReportGenarator\ComplaintList.cshtml" />
-    <Content Include="Views\Complain\CommenttList.cshtml" />
-    <Content Include="Views\ReportGenarator\ShowDetail.cshtml" />
-    <Content Include="Views\ReportGenarator\MonthWiseComplaints.cshtml" />
-    <Content Include="Views\ReportGenarator\ShowMonthWiseComplaints.cshtml" />
-    <Content Include="Views\Complain\WriteComplain.cshtml" />
-    <Content Include="Views\Complain\UserView.cshtml" />
-    <Content Include="Views\Setting\Setting.cshtml" />
-    <Content Include="Views\Setting\ShowSubject.cshtml" />
-    <Content Include="Views\Organization\SearchOrganizations.cshtml" />
-    <Content Include="Views\Organization\OrganizationList.cshtml" />
-    <Content Include="Views\Complain\Feedback.cshtml" />
-    <Content Include="Views\Shared\_SeconderyLayout.cshtml" />
-    <Content Include="Views\Account\SignUp.cshtml" />
-    <Content Include="Views\Shared\_FooterPartial.cshtml" />
-    <Content Include="Views\Shared\_NavbarPartial.cshtml" />
-    <Content Include="Views\Feedback\ThankYou.cshtml" />
-    <Content Include="Views\Shared\_AdminNavbar.cshtml" />
-    <Content Include="Views\Shared\_AdminSideBarTop.cshtml" />
-    <Content Include="Views\Shared\_AdminSideBarMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -729,6 +670,48 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\SignUp.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Admin\AddNewTopic.cshtml" />
+    <Content Include="Views\Admin\AdvancedFeedbackFilter.cshtml" />
+    <Content Include="Views\Admin\AdvancedFeedbackList.cshtml" />
+    <Content Include="Views\Admin\EditTopic.cshtml" />
+    <Content Include="Views\Admin\FeedbackDetails.cshtml" />
+    <Content Include="Views\Admin\FeedbackList.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\ListTopic.cshtml" />
+    <Content Include="Views\Admin\NewFeedbackList.cshtml" />
+    <Content Include="Views\Admin\OrganizationDetails.cshtml" />
+    <Content Include="Views\Admin\ResolvedFeedbackList.cshtml" />
+    <Content Include="Views\Admin\SetSubjectTitle.cshtml" />
+    <Content Include="Views\Feedback\Feedback.cshtml" />
+    <Content Include="Views\Feedback\ThankYou.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Organization\OrganizationDetails.cshtml" />
+    <Content Include="Views\Organization\OrganizationList.cshtml" />
+    <Content Include="Views\Organization\SearchOrganizations.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_AdminHeader.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Shared\_AdminNavbar.cshtml" />
+    <Content Include="Views\Shared\_AdminSideBarMenu.cshtml" />
+    <Content Include="Views\Shared\_AdminSideBarTop.cshtml" />
+    <Content Include="Views\Shared\_FooterPartial.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_NavbarPartial.cshtml" />
+    <Content Include="Views\Shared\_SeconderyLayout.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Organization\OrganizationSearchResult.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
