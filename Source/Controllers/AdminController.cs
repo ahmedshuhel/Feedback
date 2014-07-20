@@ -1,15 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using AutoMapper;
 using ComplaintBox.Web.Models;
 using System.Linq;
 using System.Data.Entity;
+using MvcPaging;
 
 namespace ComplaintBox.Web.Controllers
 {
     [Authorize]
     public class AdminController : Controller
     {
+        private const int PageSize = 10;
 
         public ActionResult Index()
         {
@@ -262,14 +265,12 @@ namespace ComplaintBox.Web.Controllers
         }
 
 
-        public ActionResult RecentFeedbackList()
-        {
-            var model = GetFeedbackList("ALL");
-            return View(model);
-        }
 
-        private FeedbackListViewModel GetFeedbackList(string status)
+        private FeedbackListViewModel GetFeedbackList(string status, int? page, int? topicId = null,  DateTime? fromDate = null, DateTime? toDate = null)
         {
+
+            int currentPageIndex = page.HasValue ? page.Value : 1;
+
             var viewModel = GetAdminViewModel(User.Identity.Name);
             var model = Mapper.DynamicMap<AdminViewModel, FeedbackListViewModel>(viewModel);
 
@@ -290,7 +291,22 @@ namespace ComplaintBox.Web.Controllers
                     query = query.Where(c => c.Status == "RESOLVED");
                 }
 
-                feedbacks =   query.AsEnumerable()
+                if (fromDate != null && toDate != null)
+                {
+                    query = query.Where(c => c.ComplainDate >= fromDate && c.ComplainDate <= toDate);    
+                }
+
+
+                if (topicId != null)
+                {
+                    query = query.Where(c => c.SubjectId == topicId);
+                }
+
+
+
+                feedbacks =   query
+                              .OrderBy(c=> c.ComplainDate)
+                              .AsEnumerable()
                               .Select(c => new FeedBackViewModel()
                                   {
                                       Email = c.EmailAddress,
@@ -304,20 +320,28 @@ namespace ComplaintBox.Web.Controllers
             }
 
 
-            model.FeedBackViewModels = feedbacks;
+            model.FeedBackViewModels = feedbacks.ToPagedList(currentPageIndex, PageSize);
+
             return model;
         }
 
-
-        public ActionResult ResolvedFeedbackList()
+        public ActionResult RecentFeedbackList(int? page)
         {
-            var model = GetFeedbackList("RESOLVED");
+            var model = GetFeedbackList("ALL", page);
             return View(model);
         }
 
-        public ActionResult NewFeedbackList()
+
+        public ActionResult ResolvedFeedbackList(int? page)
         {
-            var model = GetFeedbackList("NEW");
+
+            var model = GetFeedbackList("RESOLVED", page);
+            return View(model);
+        }
+
+        public ActionResult NewFeedbackList(int? page)
+        {
+            var model = GetFeedbackList("NEW", page);
             return View(model);
         }
 
@@ -361,7 +385,6 @@ namespace ComplaintBox.Web.Controllers
 
             return RedirectToAction("ResolvedFeedbackList");
         }
-
 
         public ActionResult DeActivateOrganization(int id)
         {

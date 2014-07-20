@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
+using MvcPaging;
 
 namespace ComplaintBox.Web.Models
 {
     public class FeedbackListViewModel : AdminViewModel
     {
-        public IList<FeedBackViewModel> FeedBackViewModels { get; set; }
+        public IPagedList<FeedBackViewModel> FeedBackViewModels { get; set; }
     }
 
     public class FeedBackViewModel
