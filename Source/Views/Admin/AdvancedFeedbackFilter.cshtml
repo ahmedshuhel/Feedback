@@ -1,0 +1,76 @@
+﻿@model ComplaintBox.Web.Models.AdminViewModel
+
+@{
+    ViewBag.Title = "Dashboard";
+    ViewBag.PageTitle = "Dashboard";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style type="text/css">
+    #filterForm {
+        background-color: #ffffff;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        padding: 15px 50px;
+    }
+</style>
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-offset-2 col-sm-6 ">
+
+            <h1 class="text-center">Advanced Feedback Filter!</h1>
+            <p class="text-muted text-center">Fill out the form as you see fit and hit "Apply Filter button"</p>
+            
+
+            @using (Html.BeginForm("AdvancedFeedbackList", "Admin", FormMethod.Get, new { @class = "form-horizontal", id = "filterForm" }))
+            {
+                <div class="form-group">
+
+                    <label for="Status" class="control-label">Status</label>
+                    <select id="Status" name="Status" class="form-control">
+                        <option>ALL</option>
+                        <option>NEW</option>
+                        <option>RESOLVED</option>
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="TopicId" class="control-label">@Model.SubjectTitle</label>
+                    @Html.DropDownList("TopicId", (IEnumerable<SelectListItem>)ViewBag.Subjects, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    <label for="fromDate" class="control-label">From</label>
+
+                    <input type="text" value="" class="form-control" id="fromDate" name="FromDate" />
+
+                </div>
+
+                <div class="form-group">
+                    <label for="toDate" class="control-label">To</label>
+                    <input type="text" value="" class="form-control" id="toDate" name="ToDate" />
+                </div>
+
+                <input type="submit" class="btn btn-primary" value="Apply Filter" />
+               
+            }
+
+        </div>
+
+    </div>
+
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+
+        $("#fromDate").datepicker();
+        $("#toDate").datepicker();
+
+    </script>
+}

@@ -210,6 +210,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
+    <Compile Include="Models\AdvancedFilter.cs" />
     <Compile Include="Models\CboxContext.cs" />
     <Compile Include="Models\Complaint.cs" />
     <Compile Include="Models\EditTopicViewModel.cs" />
@@ -235,6 +236,7 @@
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\carousel.css" />
+    <Content Include="Content\css\datepicker.css" />
     <Content Include="Content\css\feedback.css" />
     <Content Include="Content\css\flaty-bootstrap-theme.min.css" />
     <Content Include="Content\css\font-awesome.css" />
@@ -612,6 +614,7 @@
     <Content Include="Content\img\pattern\xv.png" />
     <Content Include="Content\img\pattern\zigzag.png" />
     <Content Include="Content\img\user.gif" />
+    <Content Include="Scripts\js\bootstrap-datepicker.js" />
     <Content Include="Scripts\js\bootstrap.js" />
     <Content Include="Scripts\js\bootstrap.min.js" />
     <Content Include="Scripts\js\bootstrap3-wysihtml5.js" />
@@ -656,6 +659,8 @@
     <Content Include="Views\Admin\ResolvedFeedbackList.cshtml" />
     <Content Include="Views\Admin\NewFeedbackList.cshtml" />
     <Content Include="Views\Admin\FeedbackDetails.cshtml" />
+    <Content Include="Views\Admin\AdvancedFeedbackFilter.cshtml" />
+    <Content Include="Views\Admin\AdvancedFeedbackList.cshtml" />
     <None Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

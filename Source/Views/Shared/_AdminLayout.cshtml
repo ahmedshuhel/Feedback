@@ -16,7 +16,9 @@
 
     <!-- Bootstrap -->
     <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    
 
+    <link rel="stylesheet" href="~/Content/css/datepicker.css">
     <!-- Font Awesome -->
     <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
 
@@ -69,8 +71,11 @@
 
     <script src="~/Scripts/js/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/js/bootstrap-datepicker.js"></script>
     <script src="~/Scripts/js/style-switcher.js"></script>
     <script src="~/Scripts/js/admin-main.js"></script>
+    
+    @RenderSection("scripts", false)
 
 </body>
 </html>

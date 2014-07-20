@@ -46,21 +46,26 @@
     
     
         <div class="row">
-        <div class="pager">
-            @Html.Raw(Html.Pager(
-                new Options
-                    {
-                        PageSize = pagedModel.PageSize,
-                        TotalItemCount = pagedModel.TotalItemCount,
-                        CurrentPage = pagedModel.PageNumber,
-                        ItemTexts = new ItemTexts { Next = "Next", Previous = "Previous", Page = "" },
-                        ItemIcon = new ItemIcon { First = "icon-backward", Previous = "icon-chevron-left", Next = "icon-chevron-right", Last = "icon-forward" },
-                        TooltipTitles = new TooltipTitles { Next = "Next page", Previous = "Previous page", Page = "Go to page {0}.", First = "Go To First Page", Last = "Go To Last Page" },
-                        Size = Size.normal,
-                        Alignment = Alignment.centered,
-                        IsShowControls = true,
-                        IsShowFirstLast = true
-                    }, new { controller = "Admin", action = "ResolvedFeedbackList" }))
+            <div class="pager">
+                @Html.Raw(Html.Pager(
+                    new Options
+                        {
+                            PageSize = pagedModel.PageSize,
+                            TotalItemCount = pagedModel.TotalItemCount,
+                            CurrentPage = pagedModel.PageNumber,
+                            ItemTexts = new ItemTexts { Next = "Next", Previous = "Previous", Page = "" },
+                            ItemIcon = new ItemIcon { First = "icon-backward", Previous = "icon-chevron-left", Next = "icon-chevron-right", Last = "icon-forward" },
+                            TooltipTitles = new TooltipTitles { Next = "Next page", Previous = "Previous page", Page = "Go to page {0}.", First = "Go To First Page", Last = "Go To Last Page" },
+                            Size = Size.normal,
+                            Alignment = Alignment.centered,
+                            IsShowControls = true,
+                            IsShowFirstLast = true
+                        }, new { controller = "Admin", action = "ResolvedFeedbackList" }))
+            </div>
+            
+                   <div class="well text-center">
+            Showing <span class="label label-info">@pagedModel.ItemStart</span> to <span class="label label-info">@pagedModel.ItemEnd</span>
+            of <span class="label label-info">@pagedModel.TotalItemCount</span> entries
         </div>
-    </div>
+        </div>
 </div>
