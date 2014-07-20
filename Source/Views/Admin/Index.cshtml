@@ -1,5 +1,141 @@
-﻿@{
+﻿@using ComplaintBox.Web.Models
+@model ComplaintBox.Web.Models.DashboardViewModel
+
+@{
     ViewBag.Title = "Dashboard";
     ViewBag.PageTitle = "Dashboard";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
+<div class="container">
+
+    <div class="text-center">
+        <a class="quick-btn" href="#">
+            <i class="fa fa-bolt fa-2x"></i>
+            <span>All Feedbacks</span>
+            <span class="label label-default">
+                @(Model.NumberOfPendingFeedbacksToday + Model.NumbeOfResolvedFeedbacksToday)
+            </span>
+        </a>
+        <a class="quick-btn" href="#">
+            <i class="fa fa-envelope fa-2x"></i>
+            <span>Pendings</span>
+            <span class="label label-warning">
+                @Model.NumberOfPendingFeedbacksToday
+            </span>
+        </a>
+
+        <a class="quick-btn" href="#">
+            <i class="fa fa-check fa-2x"></i>
+            <span>Resolved</span>
+            <span class="label label-success">
+                @Model.NumbeOfResolvedFeedbacksToday
+            </span>
+        </a>
+    </div>
+
+    <hr />
+
+    <div class="row">
+
+        <div class="col-sm-5">
+            <div class="box">
+                <header>
+                    Feedback frequecy of last seven days.
+                </header>
+                <div class="body">
+                    <img src="@Url.Action("LastSevenDaysFeedbackChart")" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-7">
+            <div class="box">
+                <header>
+                    Last Seven Today's Feedback
+                </header>
+                <div class="body">
+                    <table class="table">
+                        <tr>
+                            <th>Name</th>
+                            <th>Feedback</th>
+                            <th>@Model.SubjectTitle</th>
+                        </tr>
+
+                        @foreach (FeedBackViewModel item in Model.AllFeedbacks)
+                        {
+                            var status = item.Status == "NEW" ? "danger" : "success";
+                
+                            <tr class="@status">
+                                <td>@Html.DisplayFor(modelItem => item.FeedbackUser)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Feedback)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Topic)</td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="box">
+                <header>
+                    Last Seven <span class="label label-warning">pending</span> feedback
+                </header>
+                <div class="body">
+                    <table class="table table-striped table-hover">
+                        <tr>
+                            <th>Name</th>
+                            <th>Feedback</th>
+                            <th>@Model.SubjectTitle</th>
+                        </tr>
+
+                        @foreach (FeedBackViewModel item in Model.Pendings)
+                        {
+                           
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.FeedbackUser)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Feedback)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Topic)</td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+                <div class="col-sm-6">
+            <div class="box">
+                <header>
+                    Last Seven <span class="label label-success">resolved</span> feedback
+                    
+                </header>
+                <div class="body">
+                    <table class="table table-striped table-hover">
+                        <tr>
+                            <th>Name</th>
+                            <th>Feedback</th>
+                            <th>@Model.SubjectTitle</th>
+                        </tr>
+
+                        @foreach (FeedBackViewModel item in Model.Resolved)
+                        {
+                           
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.FeedbackUser)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Feedback)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Topic)</td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using AutoMapper;
 using ComplaintBox.Web.Models;
@@ -23,8 +24,45 @@ namespace ComplaintBox.Web.Controllers
         public ActionResult Index()
         {
             string name = User.Identity.Name;
-            AdminViewModel model = GetAdminViewModel(name);
-            return View(model);
+            var model = GetAdminViewModel(name);
+
+            var viewModel = Mapper.DynamicMap<AdminViewModel, DashboardViewModel>(model);
+
+            viewModel.AllFeedbacks = GetFeedbacks("ALL", null, DateTime.Today, DateTime.Today.AddDays(1),
+                                                  model.OrganizationId).OrderBy(f=> f.FeedbackDate).Take(7).ToList();
+
+            viewModel.Pendings = GetFeedbacks("NEW", null, DateTime.Today, DateTime.Today.AddDays(1),
+                                      model.OrganizationId).OrderBy(f => f.FeedbackDate).Take(7).ToList();
+
+            viewModel.Resolved = GetFeedbacks("RESOLVED", null, DateTime.Today, DateTime.Today.AddDays(1),
+                                      model.OrganizationId).OrderBy(f => f.FeedbackDate).Take(7).ToList();
+
+            return View(viewModel);
+        }
+
+
+
+
+        public ActionResult LastSevenDaysFeedbackChart()
+        {
+
+            DateTime fromDate = DateTime.Today.AddDays(-7);
+            DateTime toDate = DateTime.Today.AddDays(1);
+
+
+            int orgId = 2;
+
+            var feedbacks = GetFeedbacks("ALL", null, fromDate, toDate, orgId);
+
+            var chart = new Chart(width: 300, height: 300)
+                .AddTitle("Feedback Frequency")
+                
+                .AddSeries(         
+                name: "Frequency",
+                xValue: new[] { "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" },
+                yValues: new[] { "23", "3", "0", "1", "3", "35", "34" });
+
+            return File(chart.ToWebImage().GetBytes(), "image/jpeg");
         }
 
 
@@ -47,7 +85,7 @@ namespace ComplaintBox.Web.Controllers
             var model = new AdminViewModel
                 {
                     UserName = string.IsNullOrEmpty(org.FullName) ? userName : org.FullName,
-                    NumberOfPendingTopics = numberOfPendingTopics,
+                    NumberOfPendingFeedbacksToday = numberOfPendingTopics,
                     NumbeOfResolvedFeedbacksToday = numberOfResolvedFeedbacks,
                     OrganizationId = org.Id,
                     OrganizationStatus = org.Status
@@ -263,7 +301,7 @@ namespace ComplaintBox.Web.Controllers
         }
 
 
-        private FeedbackListViewModel GetFeedbackList(string status, int? page, int? topicId = null,
+        private FeedbackListViewModel GetFeedbackPagedList(string status, int? page, int? topicId = null,
                                                       DateTime? fromDate = null, DateTime? toDate = null)
         {
             int currentPageIndex = page.HasValue ? page.Value : 1;
@@ -271,11 +309,22 @@ namespace ComplaintBox.Web.Controllers
             AdminViewModel viewModel = GetAdminViewModel(User.Identity.Name);
             FeedbackListViewModel model = Mapper.DynamicMap<AdminViewModel, FeedbackListViewModel>(viewModel);
 
+            var feedbacks = GetFeedbacks(status, topicId, fromDate, toDate, viewModel.OrganizationId);
+
+
+            model.FeedBackViewModels = feedbacks.ToPagedList(currentPageIndex, PageSize);
+
+            return model;
+        }
+
+        private static List<FeedBackViewModel> GetFeedbacks(string status, int? topicId, DateTime? fromDate, DateTime? toDate,
+                                         int orgId)
+        {
             List<FeedBackViewModel> feedbacks;
 
             using (var db = new CboxContext())
             {
-                IQueryable<Complaint> query = db.Complaints.Where(c => c.OrganizationId == viewModel.OrganizationId)
+                IQueryable<Complaint> query = db.Complaints.Where(c => c.OrganizationId == orgId)
                                                 .Include(c => c.Subject);
 
                 if (status == "NEW")
@@ -299,7 +348,7 @@ namespace ComplaintBox.Web.Controllers
                 }
 
 
-                feedbacks = query.Where(c => c.OrganizationId == viewModel.OrganizationId)
+                feedbacks = query.Where(c => c.OrganizationId == orgId)
                                  .OrderBy(c => c.ComplainDate)
                                  .AsEnumerable()
                                  .Select(c => new FeedBackViewModel
@@ -313,18 +362,14 @@ namespace ComplaintBox.Web.Controllers
                                          Status = c.Status
                                      }).ToList();
             }
-
-
-            model.FeedBackViewModels = feedbacks.ToPagedList(currentPageIndex, PageSize);
-
-            return model;
+            return feedbacks;
         }
 
         public ActionResult FeedbackList(int? page)
         {
             ViewBag.FeedbackListTitle = "Recent Feedback List";
 
-            FeedbackListViewModel model = GetFeedbackList("ALL", page);
+            FeedbackListViewModel model = GetFeedbackPagedList("ALL", page);
             return View(model);
         }
 
@@ -336,7 +381,7 @@ namespace ComplaintBox.Web.Controllers
             DateTime? fromDate = DateTime.Today;
             DateTime? toDate = DateTime.Today.AddDays(1);
 
-            FeedbackListViewModel model = GetFeedbackList("ALL", page, null, fromDate, toDate);
+            FeedbackListViewModel model = GetFeedbackPagedList("ALL", page, null, fromDate, toDate);
             return View("FeedbackList", model);
         }
 
@@ -348,7 +393,7 @@ namespace ComplaintBox.Web.Controllers
 
             ViewBag.FeedbackListTitle = "Feedbaks of Last Seven Days";
 
-            FeedbackListViewModel model = GetFeedbackList("ALL", page, null, fromDate, toDate);
+            FeedbackListViewModel model = GetFeedbackPagedList("ALL", page, null, fromDate, toDate);
             return View("FeedbackList", model);
         }
 
@@ -362,7 +407,7 @@ namespace ComplaintBox.Web.Controllers
             DateTime? toDate = new DateTime(DateTime.Today.Year, month, daysInMonth);
 
             ViewBag.FeedbackListTitle = "Feedback List of " + _months[month - 1] + ", " + DateTime.Today.Year.ToString();
-            FeedbackListViewModel model = GetFeedbackList("ALL", page, null, fromDate, toDate);
+            FeedbackListViewModel model = GetFeedbackPagedList("ALL", page, null, fromDate, toDate);
             return View("FeedbackList", model);
         }
 
@@ -425,20 +470,20 @@ namespace ComplaintBox.Web.Controllers
                 ViewBag.Topic = "ALL";
             }
             
-            var model = GetFeedbackList(filter.Status, page, filter.TopicId, filter.FromDate, filter.ToDate);
+            var model = GetFeedbackPagedList(filter.Status, page, filter.TopicId, filter.FromDate, filter.ToDate);
             return View(model);
         }
 
 
         public ActionResult ResolvedFeedbackList(int? page)
         {
-            FeedbackListViewModel model = GetFeedbackList("RESOLVED", page);
+            FeedbackListViewModel model = GetFeedbackPagedList("RESOLVED", page);
             return View(model);
         }
 
         public ActionResult NewFeedbackList(int? page)
         {
-            FeedbackListViewModel model = GetFeedbackList("NEW", page);
+            FeedbackListViewModel model = GetFeedbackPagedList("NEW", page);
             return View(model);
         }
 
@@ -504,4 +549,6 @@ namespace ComplaintBox.Web.Controllers
             return RedirectToAction("Index");
         }
     }
+
+
 }

@@ -213,6 +213,7 @@
     <Compile Include="Models\AdvancedFilter.cs" />
     <Compile Include="Models\CboxContext.cs" />
     <Compile Include="Models\Complaint.cs" />
+    <Compile Include="Models\DashboardViewModel.cs" />
     <Compile Include="Models\EditTopicViewModel.cs" />
     <Compile Include="Models\FeedbackListViewModel.cs" />
     <Compile Include="Models\FeedbackViewModel.cs" />

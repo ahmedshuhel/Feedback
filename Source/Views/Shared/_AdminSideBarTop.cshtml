@@ -6,9 +6,9 @@
         <img class="media-object img-thumbnail user-img" alt="User Picture" src="/Content/img/user.gif" />
         
         @{
-            if (Model.NumberOfPendingTopics > 0)
+            if (Model.NumberOfPendingFeedbacksToday > 0)
             {
-                      <span class="label label-danger user-label">@Model.NumberOfPendingTopics</span>
+                      <span class="label label-danger user-label">@Model.NumberOfPendingFeedbacksToday</span>
             }
         }
 
