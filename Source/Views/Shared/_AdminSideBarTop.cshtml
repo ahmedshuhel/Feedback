@@ -1,14 +1,34 @@
-﻿@model ComplaintBox.Web.Models.AdminViewModel
+﻿@using ComplaintBox.Web.Models
+@model ComplaintBox.Web.Models.AdminViewModel
 
 <div class="media user-media">
     <a class="user-link" href="#">
         <img class="media-object img-thumbnail user-img" alt="User Picture" src="/Content/img/user.gif" />
-        <span class="label label-danger user-label">@Model.NumberOfPendingTopics</span>
+        
+        @{
+            if (Model.NumberOfPendingTopics > 0)
+            {
+                      <span class="label label-danger user-label">@Model.NumberOfPendingTopics</span>
+            }
+        }
+
+  
     </a>
     <div class="media-body">
         <h5 class="media-heading">@Model.UserName</h5>
         <ul class="list-unstyled user-info">
             <li><a href="#">Administrator</a> </li>
+            
+            @{
+                if (Model.OrganizationStatus == OrganizationStatus.New)
+                {
+                    <li><span class="label label-danger">De-activated</span> </li>
+                }
+                else
+                {
+                    <li><span class="label label-success">Active</span> </li>
+                }
+            }
         </ul>
     </div>
 </div>

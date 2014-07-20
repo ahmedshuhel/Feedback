@@ -81,9 +81,15 @@
 
 
     <li>
-        <a href="file.html">
-            <i class="fa fa-file"></i>&nbsp;File Manager</a>
+        <a href="@Url.Action("ActivateOrganization", "Admin", new {id = Model.OrganizationId})">
+            <i class="fa fa-check"></i>&nbsp;Activate Organization</a>
     </li>
+    
+    <li>
+        <a href="@Url.Action("DeActivateOrganization", "Admin",  new {id = Model.OrganizationId})">
+            <i class="fa fa-ban"></i>&nbsp;De-activate Organization</a>
+    </li>
+
     <li>
         <a href="typography.html">
             <i class="fa fa-font"></i>&nbsp; Typography</a>

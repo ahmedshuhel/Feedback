@@ -1,4 +1,5 @@
-﻿<header class="head">
+﻿@model ComplaintBox.Web.Models.AdminViewModel
+<header class="head">
     <div class="search-bar">
         <a data-original-title="Show/Hide Menu" data-placement="bottom" data-tooltip="tooltip" class="accordion-toggle btn btn-primary btn-sm visible-xs" data-toggle="collapse" href="#menu" id="menu-toggle">
             <i class="fa fa-expand"></i>
@@ -15,7 +16,15 @@
 
     <!-- ."main-bar -->
     <div class="main-bar">
+        <h5 class="pull-right">
+            <a title="Feedback link" href="@Url.Action("Feedback", "Feedback", new {id = Model.OrganizationId})">
+                @Url.Action("Feedback", "Feedback", new {id = Model.OrganizationId}, "http")
+                
+                
+            </a> 
+        </h5>
         <h3>@ViewBag.PageTitle</h3>
+        
     </div>
     <!-- /.main-bar -->
 </header>

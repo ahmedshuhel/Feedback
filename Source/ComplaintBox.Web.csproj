@@ -215,6 +215,7 @@
     <Compile Include="Models\ListTopicViewModel.cs" />
     <Compile Include="Models\NewTopicViewModel.cs" />
     <Compile Include="Models\OrganizationDetailViewModel.cs" />
+    <Compile Include="Models\OrganizationStatus.cs" />
     <Compile Include="Models\OrganizationViewModel.cs" />
     <Compile Include="Models\SetSubjectTitle.cs" />
     <Compile Include="Models\Settings.cs" />

@@ -13,5 +13,6 @@
         public int NumbeOfResolvedFeedbacksToday { get; set; }
         public int OrganizationId { get; set; }
         public string SubjectTitle { get; set; }
+        public OrganizationStatus OrganizationStatus { get; set; }
     }
 }

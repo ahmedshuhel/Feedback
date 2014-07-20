@@ -7,6 +7,7 @@ using System.Data.Entity;
 
 namespace ComplaintBox.Web.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
 
@@ -39,6 +40,7 @@ namespace ComplaintBox.Web.Controllers
                     NumberOfPendingTopics = numberOfPendingTopics,
                     NumbeOfResolvedFeedbacksToday = numberOfResolvedFeedbacks,
                     OrganizationId = org.Id,
+                    OrganizationStatus = org.Status
 
                 };
 
@@ -359,6 +361,32 @@ namespace ComplaintBox.Web.Controllers
 
             return RedirectToAction("ResolvedFeedbackList");
         }
+
+
+        public ActionResult DeActivateOrganization(int id)
+        {
+            using (var db = new CboxContext())
+            {
+                var organization = db.Organization.Find(id);
+                organization.Status = OrganizationStatus.New;
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult ActivateOrganization(int id)
+        {
+            using (var db = new CboxContext())
+            {
+                Organization organization = db.Organization.Find(id);
+                organization.Status = OrganizationStatus.Published;
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
 
     }
 }
